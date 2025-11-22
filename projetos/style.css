@@ -1,0 +1,102 @@
+/* ====== GLOBAL ====== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    background: #0e0e10;
+    color: #e5e5e5;
+    line-height: 1.6;
+    padding-bottom: 40px;
+}
+
+/* ====== HEADER ====== */
+header {
+    text-align: center;
+    padding: 60px 20px 40px;
+    background: linear-gradient(180deg, #141418, #0e0e10);
+    border-bottom: 1px solid #1f1f22;
+}
+
+header h1 {
+    color: #4da6ff;
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #9b9b9b;
+    font-size: 1.2rem;
+}
+
+/* ====== PROJETOS ====== */
+section {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+section h2 {
+    color: #4da6ff;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+/* ====== CARDS ====== */
+.card {
+    background: #1a1a1d;
+    border: 1px solid #2a2a2e;
+    padding: 20px;
+    border-radius: 12px;
+    transition: 0.25s ease;
+}
+
+.card:hover {
+    border-color: #4da6ff;
+    transform: translateY(-4px);
+    box-shadow: 0 0 12px #4da6ff44;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: #4da6ff;
+}
+
+.card-desc {
+    font-size: 0.95rem;
+    color: #cfcfcf;
+    margin-bottom: 15px;
+}
+
+.card a {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: #4da6ff;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.card a:hover {
+    background: #77bbff;
+}
+
+/* ====== FOOTER ====== */
+footer {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #777;
+}
