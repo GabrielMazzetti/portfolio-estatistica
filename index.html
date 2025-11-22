@@ -5,20 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfólio — Gabriel Mazzetti Affonso</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
 
-    <nav class="navbar">
-        <ul class="nav-links">
-            <li><a href="#sobre">Sobre mim</a></li>
-            <li><a href="#projetos">Projetos</a></li>
-            <li><a href="#contato">Contato</a></li>
-        </ul>
-    </nav>
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projetos.html">Meus Projetos</a></li>
+        
+        <li class="divisor">|</li>
+
+        <li>
+            <a href="https://github.com/GabrielMazzetti" target="_blank" title="GitHub">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://linkedin.com/in/gabriel-mazzetti-066a4125b" target="_blank" title="LinkedIn">
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+        </li>
+        <li>
+            <a href="mailto:gabrielmazzetti84@gmail.com?subject=Contato via Portfólio&body=Olá, Gabriel! Vi seu portfólio e gostaria de conversar." title="Enviar Email">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+         </li>
+    </ul>
+</nav>
 
     <header class="header">
-        <img src="img/foto.jpg" alt="Foto" class="profile-img" />
+        <img src="foto.jpg" alt="Foto" class="profile-img" />
         <h1>Gabriel Sanábio Mazzetti Affonso</h1>
         <h2>Estatístico em formação • UFJF</h2>
     </header>
@@ -47,49 +65,9 @@
         </div>
     </section>
 
-    <section id="projetos" class="section">
-        <h2>Projetos</h2>
-
-        <div class="grid">
-
-            <a class="card" href="projetos/estatistica-descritiva/README.md">
-                <div class="card-content">
-                    <h3>Estatística Descritiva</h3>
-                    <p>Medidas de posição, dispersão, visualização e exploração de dados.</p>
-                    <span class="card-tag">R • Python • Gráficos</span>
-                </div>
-                <div class="card-icon">📊</div>
-            </a>
-
-            <a class="card" href="projetos/modelagem/README.md">
-                <div class="card-content">
-                    <h3>Modelagem Estatística</h3>
-                    <p>Modelos lineares, GLM, ajustes, diagnóstico e interpretação.</p>
-                    <span class="card-tag">Regressão • GLM</span>
-                </div>
-                <div class="card-icon">📈</div>
-            </a>
-
-            <a class="card" href="projetos/inferencia/README.md">
-                <div class="card-content">
-                    <h3>Inferência Estatística</h3>
-                    <p>Intervalos de confiança, testes de hipótese e simulações.</p>
-                    <span class="card-tag">Teoria • Simulação</span>
-                </div>
-                <div class="card-icon">📐</div>
-            </a>
-
-        </div>
-    </section>
-
-    <section id="contato" class="section">
-        <h2>Contato</h2>
-        <p>Você pode entrar em contato comigo pelo e-mail:</p>
-        <p><b>gabriel.mazzetti@estudante.ufjf.br</b></p>
-    </section>
 
     <footer>
-        © 2025 — Gabriel Mazzetti Affonso
+        © 2025 — Gabriel Sanábio Mazzetti Affonso
     </footer>
 
 <script src="script.js"></script>

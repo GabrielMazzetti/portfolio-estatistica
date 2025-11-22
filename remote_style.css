@@ -11,53 +11,38 @@ body {
     overflow-x: hidden;
 }
 
-/* ================================
-   NAVBAR MINIMALISTA
-==================================*/
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 18px 60px;
-    background-color: white;
-    border-bottom: 1px solid #e6e6e6;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+/* Estilo da barra de navegação */
+nav {
+    background-color: lightblue; /* Fundo quase preto para dar contraste */
+    padding: 15px 0; /* Espaçamento em cima e embaixo */
 }
 
-.nav-left {
-    display: flex;
-    gap: 22px;
+nav ul {
+    display: flex; /* O MÁGICO: Isso coloca os itens lado a lado */
+    justify-content: center; /* Centraliza os itens na tela */
+    list-style-type: none; /* Remove as "bolinhas" da lista */
+    margin: 0;
+    padding: 0;
+    gap: 30px; /* Espaço entre cada item do menu */
 }
 
-.nav-item {
-    font-size: 15px;
-    text-decoration: none;
-    color: #1a1a1a;
-    padding: 6px 0;
-    transition: 0.2s;
+/* Estilo dos links (os escritos) */
+nav a {
+    color: white; 
+    text-decoration: none; /* Remove o sublinhado padrão do link */
+    font-size: 18px; /* Tamanho da fonte base */
+    font-family: sans-serif; /* Uma fonte mais limpa */
+    
+    /* Suavidade na animação */
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: inline-block; /* Necessário para o transform funcionar bem */
 }
 
-.nav-item:hover {
-    color: #3b82f6;
+/* O que acontece quando passa o mouse (Hover) */
+nav a:hover {
+    transform: scale(1.2); /* Aumenta o tamanho em 20% */
+    color: #ffffff; /* (Opcional) Fica branco brilhante ao passar o mouse */
 }
-
-.nav-right {
-    display: flex;
-    gap: 18px;
-}
-
-.icon-link i {
-    font-size: 20px;
-    color: #1a1a1a;
-    transition: 0.2s;
-}
-
-.icon-link:hover i {
-    color: #3b82f6;
-}
-
 /* HERO SECTION - CORRIGIDA */
 .hero {
     display: flex;

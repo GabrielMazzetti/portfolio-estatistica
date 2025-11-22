@@ -6,40 +6,37 @@ body {
     color: #111;
 }
 
-/* NAVBAR */
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: white;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
-    padding: 10px 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 10;
+/* Estilo da barra de navegação */
+nav {
+    background-color: lightblue; /* Fundo quase preto para dar contraste */
+    padding: 15px 0; /* Espaçamento em cima e embaixo */
 }
 
-.logo {
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 1px;
+nav ul {
+    display: flex; /* O MÁGICO: Isso coloca os itens lado a lado */
+    justify-content: center; /* Centraliza os itens na tela */
+    list-style-type: none; /* Remove as "bolinhas" da lista */
+    margin: 0;
+    padding: 0;
+    gap: 30px; /* Espaço entre cada item do menu */
 }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+/* Estilo dos links (os escritos) */
+nav a {
+    color: white; 
+    text-decoration: none; /* Remove o sublinhado padrão do link */
+    font-size: 18px; /* Tamanho da fonte base */
+    font-family: sans-serif; /* Uma fonte mais limpa */
+    
+    /* Suavidade na animação */
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: inline-block; /* Necessário para o transform funcionar bem */
 }
 
-.nav-links a {
-    text-decoration: none;
-    color: #111;
-    font-weight: 500;
-}
-
-.nav-links a:hover {
-    opacity: 0.7;
+/* O que acontece quando passa o mouse (Hover) */
+nav a:hover {
+    transform: scale(1.2); /* Aumenta o tamanho em 20% */
+    color: #ffffff; /* (Opcional) Fica branco brilhante ao passar o mouse */
 }
 
 
@@ -88,50 +85,24 @@ body {
 }
 
 
-/* TAGS */
+/* O Container (Pai) */
+.tags {
+    display: flex;             /* Ativa o modo flexbox */
+    justify-content: center;   /* Centraliza horizontalmente */
+    flex-wrap: wrap;           /* Se não couber na linha, quebra para a próxima */
+    gap: 10px;                 /* Espaço entre as etiquetas (substitui o margin-right) */
+    margin-top: 15px;          /* Um espacinho para separar do texto de cima */
+}
+
+/* As Etiquetas (Filhos) */
 .tags span {
     background: #efefef;
     padding: 6px 12px;
     border-radius: 20px;
-    margin-right: 8px;
     font-size: 14px;
-}
-
-
-/* GRID DE PROJETOS */
-.grid {
-    display: grid;
-    gap: 20px;
-}
-
-.card {
-    background: #cdeafe;
-    padding: 20px;
-    border-radius: 12px;
-    text-decoration: none;
-    color: #111;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: 0.2s;
-}
-
-.card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-}
-
-.card h3 {
-    margin-top: 0;
-}
-
-.card-tag {
-    font-size: 13px;
-    opacity: 0.7;
-}
-
-.card-icon {
-    font-size: 26px;
+    
+    /* Note que removi o 'margin-right: 8px' daqui e usei 'gap' no pai.
+       Isso garante que a centralização fique perfeita. */
 }
 
 
