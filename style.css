@@ -1,138 +1,143 @@
-/* ===== GLOBAL ===== */
-* {
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", sans-serif;
+    font-family: "Inter", sans-serif;
+    background: #fafafa;
+    color: #111;
 }
 
-body {
-    background: #f7f9fc;
-    color: #1a1a1a;
-    line-height: 1.6;
-}
-
-/* ===== NAVBAR ===== */
+/* NAVBAR */
 .navbar {
-    width: 100%;
-    padding: 15px 40px;
-    background: #ffffff;
-    border-bottom: 1px solid #e5e5e5;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 5;
+    width: 100%;
+    background: white;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
 }
 
 .logo {
-    font-size: 1.4rem;
-    color: #2d6cdf;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 25px;
+    gap: 20px;
 }
 
 .nav-links a {
     text-decoration: none;
+    color: #111;
     font-weight: 500;
-    color: #333;
-    transition: 0.2s;
 }
 
 .nav-links a:hover {
-    color: #2d6cdf;
+    opacity: 0.7;
 }
 
-/* ===== HERO ===== */
-.hero {
+
+/* HEADER */
+.header {
     text-align: center;
-    padding: 80px 20px;
-    background: linear-gradient(180deg, #ffffff, #eef2f7);
+    padding-top: 120px;
 }
 
-.hero h1 {
-    font-size: 3rem;
-    color: #2d6cdf;
-    margin-bottom: 10px;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    color: #555;
-}
-
-/* ===== SECTIONS ===== */
-section {
-    padding: 50px 20px;
-    max-width: 1000px;
-    margin: auto;
-}
-
-section h2 {
-    font-size: 2rem;
-    color: #2d6cdf;
-    margin-bottom: 20px;
-}
-
-/* ===== GRID ===== */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
-}
-
-/* ===== PROJECT CARDS ===== */
-.card {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 20px;
-    transition: 0.25s;
-}
-
-.card:hover {
-    border-color: #2d6cdf;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-    transform: translateY(-3px);
-}
-
-.card-title {
-    font-size: 1.3rem;
-    color: #2d6cdf;
-    margin-bottom: 10px;
-}
-
-.card-desc {
-    color: #666;
+.profile-img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ddd;
     margin-bottom: 15px;
 }
 
-.card a {
-    padding: 10px 15px;
-    background: #2d6cdf;
-    color: white;
-    border-radius: 6px;
-    font-weight: bold;
+.header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.header h2 {
+    margin-top: 5px;
+    font-weight: normal;
+    color: #555;
+}
+
+.header p {
+    margin-top: 15px;
+    color: #555;
+}
+
+
+/* SECTIONS */
+.section {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.section h2 {
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+
+/* TAGS */
+.tags span {
+    background: #efefef;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+
+/* GRID DE PROJETOS */
+.grid {
+    display: grid;
+    gap: 20px;
+}
+
+.card {
+    background: #cdeafe;
+    padding: 20px;
+    border-radius: 12px;
     text-decoration: none;
+    color: #111;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     transition: 0.2s;
 }
 
-.card a:hover {
-    background: #3c7dff;
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
 }
 
-/* ===== FOOTER ===== */
+.card h3 {
+    margin-top: 0;
+}
+
+.card-tag {
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+.card-icon {
+    font-size: 26px;
+}
+
+
+/* FOOTER */
 footer {
-    margin-top: 60px;
-    padding: 25px;
     text-align: center;
-    background: white;
-    border-top: 1px solid #e5e5e5;
-    color: #666;
+    margin: 40px 0;
+    color: #777;
 }

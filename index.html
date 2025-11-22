@@ -1,43 +1,100 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio de Estatística</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfólio — Gabriel Mazzetti Affonso</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-<nav class="navbar">
-    <div class="logo">Gabriel Mazzetti</div>
-    <ul class="nav-links">
-        <li><a href="#projects-section">Projetos</a></li>
-        <li><a href="#sobre">Sobre Mim</a></li>
-    </ul>
-</nav>
+    <nav class="navbar">
+        <div class="logo">GM</div>
+        <ul class="nav-links">
+            <li><a href="#sobre">Sobre mim</a></li>
+            <li><a href="#projetos">Projetos</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
 
-<header class="hero">
-    <h1>Portfólio de Estatística</h1>
-    <p>Análises, Modelos, Visualização e Inferência</p>
-</header>
+    <header class="header">
+        <img src="img/foto.jpg" alt="Foto" class="profile-img" />
+        <h1>Gabriel Mazzetti Affonso</h1>
+        <h2>Estatístico em formação • UFJF</h2>
+        <p>
+            Análise de dados • Inferência Estatística • Modelagem • R • Python • Machine Learning
+        </p>
+    </header>
 
-<section id="projects-section">
-    <h2>Projetos</h2>
-    <div id="projects-container" class="grid"></div>
-</section>
+    <section id="sobre" class="section">
+        <h2>Sobre mim</h2>
+        <p>
+            Olá! Sou estudante de Estatística na UFJF e atuo em projetos que envolvem 
+            análise de dados, modelagem estatística, simulações, inferência e aplicações 
+            práticas da estatística em cenários reais. Tenho experiência com R, Python e SQL, 
+            além de interesse em ciência de dados, machine learning e visualização de dados.
+        </p>
+        <p>
+            Me destaco pela capacidade de explicar estatística de forma clara, estruturar projetos 
+            reprodutíveis e aplicar métodos estatísticos com rigor, tanto no contexto acadêmico 
+            quanto profissional.
+        </p>
 
-<section id="sobre">
-    <h2>Sobre Mim</h2>
-    <p>
-        Sou estudante de Estatística e desenvolvo projetos envolvendo
-        modelagem, análise de dados, inferência estatística e programação.
-        Neste portfólio você encontrará meus principais trabalhos práticos.
-    </p>
-</section>
+        <div class="tags">
+            <span>Estatística</span>
+            <span>R</span>
+            <span>Python</span>
+            <span>Inferência</span>
+            <span>Modelagem</span>
+            <span>Simulação</span>
+        </div>
+    </section>
 
-<footer>
-    © 2025 Gabriel Mazzetti — Estatística
-</footer>
+    <section id="projetos" class="section">
+        <h2>Projetos</h2>
+
+        <div class="grid">
+
+            <a class="card" href="projetos/estatistica-descritiva/README.md">
+                <div class="card-content">
+                    <h3>Estatística Descritiva</h3>
+                    <p>Medidas de posição, dispersão, visualização e exploração de dados.</p>
+                    <span class="card-tag">R • Python • Gráficos</span>
+                </div>
+                <div class="card-icon">📊</div>
+            </a>
+
+            <a class="card" href="projetos/modelagem/README.md">
+                <div class="card-content">
+                    <h3>Modelagem Estatística</h3>
+                    <p>Modelos lineares, GLM, ajustes, diagnóstico e interpretação.</p>
+                    <span class="card-tag">Regressão • GLM</span>
+                </div>
+                <div class="card-icon">📈</div>
+            </a>
+
+            <a class="card" href="projetos/inferencia/README.md">
+                <div class="card-content">
+                    <h3>Inferência Estatística</h3>
+                    <p>Intervalos de confiança, testes de hipótese e simulações.</p>
+                    <span class="card-tag">Teoria • Simulação</span>
+                </div>
+                <div class="card-icon">📐</div>
+            </a>
+
+        </div>
+    </section>
+
+    <section id="contato" class="section">
+        <h2>Contato</h2>
+        <p>Você pode entrar em contato comigo pelo e-mail:</p>
+        <p><b>gabriel.mazzetti@estudante.ufjf.br</b></p>
+    </section>
+
+    <footer>
+        © 2025 — Gabriel Mazzetti Affonso
+    </footer>
 
 <script src="script.js"></script>
 </body>
