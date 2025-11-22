@@ -1,10 +1,8 @@
-// Lista dos projetos com título e descrição
-// Você pode editar aqui sempre que adicionar um novo projeto
 const projetos = [
     {
         pasta: "estatistica-descritiva",
         titulo: "Estatística Descritiva",
-        descricao: "Medidas de tendência central, dispersão, gráficos e análise básica de dados."
+        descricao: "Medidas de tendência central, dispersão, gráficos e análises básicas."
     },
     {
         pasta: "modelagem",
@@ -14,11 +12,10 @@ const projetos = [
     {
         pasta: "inferencia",
         titulo: "Inferência Estatística",
-        descricao: "Intervalos de confiança, testes de hipóteses e quantidades pivotais."
+        descricao: "Testes de hipóteses, intervalos de confiança e quantidades pivotais."
     }
 ];
 
-// Renderização
 const container = document.getElementById("projects-container");
 
 projetos.forEach(p => {
@@ -28,7 +25,7 @@ projetos.forEach(p => {
     card.innerHTML = `
         <h3 class="card-title">${p.titulo}</h3>
         <p class="card-desc">${p.descricao}</p>
-        <a href="projetos/${p.pasta}/index.html">Acessar Projeto</a>
+        <a href="projetos/${p.pasta}/index.html">Ver Projeto</a>
     `;
     container.appendChild(card);
 });
