@@ -1,0 +1,1 @@
+Esse projeto utiliza uma base de dados de uma empresa que busca entender por que seus funcionários pedem demissão. Há algum padrão entre esses funcionários? É essencial ter esse entendimento para reduzir os custos contratuais da empresa.

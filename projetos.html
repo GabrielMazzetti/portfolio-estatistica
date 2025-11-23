@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Projetos</title>
+    <title>Meus Projetos - Gabriel Mazzetti</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,34 +11,119 @@
     <header>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li> <li><a href="projetos.html"><strong>Meus Projetos</strong></a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projetos.html" class="ativo">Meus Projetos</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
+    <main class="container-projetos">
         <h1>Portfólio de Projetos</h1>
-        <p>Aqui estão alguns dos trabalhos que desenvolvi.</p>
+        <p class="intro">Abaixo, apresento meus trabalhos organizados por área de conhecimento.</p>
 
-        <section class="lista-projetos">
-            <article>
-                <h2>Projeto 1: Análise de Dados X</h2>
-                <p>Uma breve descrição do que você fez.</p>
-                <a href="https://github.com/GabrielMazzetti/projeto-x" target="_blank">Ver código no GitHub</a>
-            </article>
-            
-            <hr>
+        <section class="categoria-box">
+    <h2 class="categoria-titulo">Estatística Descritiva</h2>
+    <div class="lista-itens">
+        
+        <article class="projeto-item">
+            <h3>Análise de Employee Attrition</h3>
+                <p id="desc-projeto1" class="descricao-projeto">Carregando descrição do README...</p> 
+                <div class="botoes">
+                    <a href="projetos/estatistica-descritiva/projeto_employee_attrition/employee_attrtion_code.html" class="btn-projeto">Ver Relatório</a>
+                    <a href="https://github.com/GabrielMazzetti/portfolio-estatistica/tree/main/projetos/estatistica-descritiva/projeto_employee_attrition" target="_blank" class="link-github">GitHub</a>
+                </div>
+        </article>
 
-            <article>
-                <h2>Projeto 2: Dashboard Y</h2>
-                <p>Descrição do dashboard.</p>
+            <article class="projeto-item">
+                <h3>Análise de Vendas de Varejo</h3>
+                     <p id="desc-projeto2" class="descricao-projeto">Análise exploratória focada em sazonalidade...</p>
+                <div class="botoes">
+                    <a href="#" class="btn-projeto">Ver Relatório</a>
+                    <a href="#" class="link-github">GitHub</a>
+                </div>
             </article>
+
+             </div>
+          </section>
+
+        <section class="categoria-box">
+            <h2 class="categoria-titulo">Inferência Paramétrica</h2>
+            <div class="lista-itens">
+                <article class="projeto-item">
+                    <h3>Teste de Hipóteses (Exemplo)</h3>
+                    <p>Estudo sobre intervalos de confiança e testes.</p>
+                    <a href="inferencia/nome-do-arquivo.html" class="btn-projeto">Ver Projeto</a>
+                </article>
+            </div>
         </section>
+
+        <section class="categoria-box">
+            <h2 class="categoria-titulo">Modelagem</h2>
+            <div class="lista-itens">
+                <article class="projeto-item">
+                    <h3>Regressão Linear (Exemplo)</h3>
+                    <p>Modelagem preditiva utilizando R.</p>
+                    <a href="modelagem/nome-do-arquivo.html" class="btn-projeto">Ver Projeto</a>
+                </article>
+            </div>
+        </section>
+
     </main>
 
     <footer>
-        <p>Desenvolvido por Mim</p>
+        <p>Desenvolvido por Gabriel Mazzetti</p>
     </footer>
+    <script>
+    // Função que busca o README e processa o texto
+    async function carregarReadme(caminhoReadme, idElemento) {
+        try {
+            const resposta = await fetch(caminhoReadme);
+            
+            if (!resposta.ok) {
+                throw new Error("Não achei o arquivo");
+            }
 
+            const textoMarkdown = await resposta.text();
+            let resumo = "";
+
+            // TENTATIVA 1: Procura pelas tags específicas // A expressão regular pega tudo ([\s\S]*?) que estiver entre as tags
+            const match = textoMarkdown.match(/([\s\S]*?)/);
+
+            if (match && match[1]) {
+                // Se achou as tags, usa o conteúdo de dentro delas
+                resumo = match[1].trim();
+            } else {
+                // TENTATIVA 2 (Fallback): Se não tiver tags, pega as 3 primeiras linhas de texto
+                resumo = textoMarkdown.split('\n') // Quebra linha por linha
+                    .filter(linha => linha.trim() !== '' && !linha.startsWith('#')) // Ignora vazios e títulos
+                    .slice(0, 3) // Pega as primeiras 3 linhas
+                    .join(' '); // Junta tudo
+            }
+
+            // SEGURANÇA: Se o texto for maior que 300 caracteres, corta e põe "..."
+            if (resumo.length > 300) {
+                resumo = resumo.substring(0, 300) + "...";
+            }
+
+            // Coloca o texto limpo no HTML
+            document.getElementById(idElemento).innerText = resumo;
+
+        } catch (erro) {
+            console.error("Erro ao ler README:", erro);
+            // Mensagem amigável caso dê erro
+            document.getElementById(idElemento).innerText = "Verifique o link do GitHub para detalhes.";
+        }
+    }
+
+    // --- CHAMADA DOS PROJETOS ---
+    
+    // Projeto 1:
+    // Lembre-se de usar "Copy Relative Path" no VS Code se o caminho der erro
+        carregarReadme('projetos/estatistica-descritiva/projeto_employee_attrition/README.md', 'desc-projeto1');
+
+    // Quando adicionar o próximo, é só copiar a linha de cima e mudar o ID:
+    // carregarReadme('inferencia/outro_projeto/README.md', 'desc-projeto2');
+
+    </script>
 </body>
 </html>
