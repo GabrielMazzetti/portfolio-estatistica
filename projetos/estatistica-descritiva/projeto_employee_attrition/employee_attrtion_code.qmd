@@ -1,0 +1,58 @@
+---
+title: "Por que os funcionários pedem demissão?"
+author: "Gabriel Sanábio Mazzetti Affonso"
+date: today
+format: 
+  html:
+    toc: true
+    theme: cosmos 
+    embed-resources: true
+    code-fold: true
+editor: visual
+---
+
+# Introdução e Contexto do Negócio
+
+A rotatividade voluntária de funcionários (*turnover*) representa um dos custos ocultos mais significativos para uma organização, impactando não apenas o orçamento de recrutamento e treinamento, mas também a produtividade das equipes e o capital intelectual da empresa.
+
+Este relatório apresenta um diagnóstico estatístico baseado no conjunto de dados de RH da IBM, contendo informações sobre **1.470 colaboradores**. O objetivo não é apenas descrever o perfil da força de trabalho, mas identificar padrões comportamentais e estruturais que distinguem os colaboradores que permanecem na empresa daqueles que decidem sair.
+
+## Objetivos da Análise
+
+Através de uma abordagem de **Estatística Descritiva e Exploratória**, este documento visa responder às seguintes perguntas estratégicas:
+
+-   **Perfil Demográfico:** Existe um perfil de idade, gênero ou estado civil mais propenso à saída?
+-   **Fatores Financeiros:** A disparidade salarial ou a falta de aumento recente (stock options, percentual de aumento) são determinantes críticos?
+-   **Satisfação e Ambiente:** Como o nível de satisfação com o ambiente e o equilíbrio vida-trabalho se relacionam com a decisão de sair?
+-   **Carreira:** O tempo de empresa e o tempo desde a última promoção influenciam a retenção?
+
+## Metodologia
+
+A análise foi conduzida utilizando a linguagem **R**, com foco na visualização de dados para identificação de tendências. As variáveis foram segmentadas entre o grupo de *Controle* (funcionários ativos) e o grupo de *Attrition* (funcionários que saíram), permitindo a comparação direta de características chave.
+
+------------------------------------------------------------------------
+
+# Panorama Geral da Rotatividade
+
+Antes de mergulhar nos fatores específicos, é fundamental estabelecer a linha de base da organização.
+
+## Insight Inicial
+
+A taxa global de rotatividade (Attrition Rate) na amostra analisada é o quê vamos calcular agora para direcionar nossa análise. Este número servirá como referência para identificarmos grupos de risco: qualquer segmento com taxa muito superior a essa merece atenção imediata da gestão.
+
+```{r}
+library("scales")
+
+dados <- read.csv("D:/portfolio/portfolio-estatistica/projetos/estatistica-descritiva/projeto_employee_attrition/employee_attrition.csv")
+
+count1 <- 0
+count2 <- 0
+
+
+taxa <- mean(dados$Attrition == "Yes")
+
+taxa_arredondada <- round(taxa, 4)
+taxa_percentual <- percent(taxa, accuracy = 0.01)
+```
+
+Como podemos ver agora, a taxa global de rotatividade é de aproximadamente **`r taxa_arredondada`**, ou **`r taxa_percentual`**                                                                    
