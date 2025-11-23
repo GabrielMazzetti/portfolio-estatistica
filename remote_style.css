@@ -146,3 +146,92 @@ nav a:hover {
         gap: 30px;
     }
 }
+
+/* Configuração geral para centralizar o conteúdo principal */
+.container-projetos {
+    max-width: 900px; /* Define uma largura máxima para não esticar demais */
+    margin: 0 auto;   /* Centraliza o container na tela */
+    padding: 20px;
+    text-align: center; /* Centraliza o título principal */
+}
+
+.intro {
+    margin-bottom: 40px;
+    color: #555;
+}
+
+/* Estilo das Caixas (Cards) das Categorias */
+.categoria-box {
+    background-color: #ffffff; /* Cor de fundo da caixa */
+    border: 1px solid #e0e0e0; /* Borda sutil */
+    border-radius: 10px;       /* Cantos arredondados */
+    padding: 30px;             /* Espaço interno da caixa */
+    margin-bottom: 40px;       /* Espaço entre uma caixa e outra */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra suave para dar destaque */
+    text-align: left;          /* Texto dentro da caixa alinhado à esquerda */
+}
+
+.categoria-titulo {
+    border-bottom: 2px solid #333; /* Linha abaixo do título da categoria */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Estilo de cada projeto dentro da caixa */
+.projeto-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #ccc; /* Separação entre projetos na mesma caixa */
+}
+
+.projeto-item:last-child {
+    border-bottom: none; /* Remove a linha do último item */
+}
+
+/* --- NOVAS ADIÇÕES (Para a descrição e alinhamento dos botões) --- */
+
+.descricao-projeto {
+    margin-bottom: 15px; /* Espaço entre o texto e os botões */
+    font-size: 0.95em;
+    color: #555;         /* Cinza escuro para facilitar a leitura */
+    line-height: 1.5;    /* Altura da linha para não ficar tudo grudado */
+}
+
+/* Container flexível para alinhar botão e link lado a lado */
+.botoes {
+    display: flex;       /* Ativa o modo flexbox */
+    align-items: center; /* Centraliza verticalmente */
+    gap: 15px;           /* Define o espaço exato entre o botão azul e o texto do GitHub */
+}
+
+/* --------------------------------------------------------------- */
+
+/* Botões */
+.btn-projeto {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9em;
+    transition: background 0.3s; /* Suaviza a mudança de cor ao passar o mouse */
+}
+
+.btn-projeto:hover {
+    background-color: #0056b3;
+}
+
+.link-github {
+    /* margin-left removido pois o 'gap' da classe .botoes já resolve isso */
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: bold; /* Deixei um pouco mais grosso para destacar */
+}
+
+.link-github:hover {
+    text-decoration: underline;
+    color: #007bff; /* Fica azul quando passa o mouse */
+}
