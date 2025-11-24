@@ -1,49 +1,63 @@
-body {
+/* =========================================
+   1. RESET E CONFIGURAÇÕES GERAIS
+========================================= */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box; /* Garante que padding não estoure a largura */
+}
+
+body {
     font-family: "Inter", sans-serif;
     background: #fafafa;
     color: #111;
+    overflow-x: hidden; /* Evita rolagem lateral indesejada */
 }
 
-/* Estilo da barra de navegação */
+a {
+    text-decoration: none;
+}
+
+/* =========================================
+   2. BARRA DE NAVEGAÇÃO (NAVBAR)
+   (Usada em todas as páginas)
+========================================= */
 nav {
-    background-color: lightblue; /* Fundo quase preto para dar contraste */
-    padding: 15px 0; /* Espaçamento em cima e embaixo */
+    background-color: lightblue;
+    padding: 15px 0;
 }
 
 nav ul {
-    display: flex; /* O MÁGICO: Isso coloca os itens lado a lado */
-    justify-content: center; /* Centraliza os itens na tela */
-    list-style-type: none; /* Remove as "bolinhas" da lista */
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
     margin: 0;
     padding: 0;
-    gap: 30px; /* Espaço entre cada item do menu */
+    gap: 30px;
 }
 
-/* Estilo dos links (os escritos) */
 nav a {
     color: white; 
-    text-decoration: none; /* Remove o sublinhado padrão do link */
-    font-size: 18px; /* Tamanho da fonte base */
-    font-family: sans-serif; /* Uma fonte mais limpa */
-    
-    /* Suavidade na animação */
+    font-size: 18px;
+    font-family: sans-serif;
     transition: transform 0.3s ease, color 0.3s ease;
-    display: inline-block; /* Necessário para o transform funcionar bem */
+    display: inline-block;
 }
 
-/* O que acontece quando passa o mouse (Hover) */
 nav a:hover {
-    transform: scale(1.2); /* Aumenta o tamanho em 20% */
-    color: #ffffff; /* (Opcional) Fica branco brilhante ao passar o mouse */
+    transform: scale(1.2);
+    color: #ffffff;
 }
 
+/* =========================================
+   3. ESTILOS DA HOME (index.html)
+========================================= */
 
-/* HEADER */
+/* Cabeçalho com Foto */
 .header {
     text-align: center;
-    padding-top: 120px;
+    padding-top: 60px; /* Reduzi um pouco de 120px para caber melhor em telas menores */
+    padding-bottom: 40px;
 }
 
 .profile-img {
@@ -71,8 +85,7 @@ nav a:hover {
     color: #555;
 }
 
-
-/* SECTIONS */
+/* Seções Gerais da Home */
 .section {
     max-width: 900px;
     margin: 60px auto;
@@ -84,41 +97,32 @@ nav a:hover {
     margin-bottom: 15px;
 }
 
-
-/* O Container (Pai) */
+/* Tags / Skills (As etiquetas cinzas) */
 .tags {
-    display: flex;             /* Ativa o modo flexbox */
-    justify-content: center;   /* Centraliza horizontalmente */
-    flex-wrap: wrap;           /* Se não couber na linha, quebra para a próxima */
-    gap: 10px;                 /* Espaço entre as etiquetas (substitui o margin-right) */
-    margin-top: 15px;          /* Um espacinho para separar do texto de cima */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
 }
 
-/* As Etiquetas (Filhos) */
 .tags span {
     background: #efefef;
     padding: 6px 12px;
     border-radius: 20px;
     font-size: 14px;
-    
-    /* Note que removi o 'margin-right: 8px' daqui e usei 'gap' no pai.
-       Isso garante que a centralização fique perfeita. */
 }
 
+/* =========================================
+   4. ESTILOS DE PROJETOS (projetos.html)
+========================================= */
 
-/* FOOTER */
-footer {
-    text-align: center;
-    margin: 40px 0;
-    color: #777;
-}
-
-/* Configuração geral para centralizar o conteúdo principal */
+/* Container Principal dos Projetos */
 .container-projetos {
-    max-width: 900px; /* Define uma largura máxima para não esticar demais */
-    margin: 0 auto;   /* Centraliza o container na tela */
-    padding: 20px;
-    text-align: center; /* Centraliza o título principal */
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
 }
 
 .intro {
@@ -126,54 +130,49 @@ footer {
     color: #555;
 }
 
-/* Estilo das Caixas (Cards) das Categorias */
+/* Caixas das Categorias (Estatística, Inferência...) */
 .categoria-box {
-    background-color: #ffffff; /* Cor de fundo da caixa */
-    border: 1px solid #e0e0e0; /* Borda sutil */
-    border-radius: 10px;       /* Cantos arredondados */
-    padding: 30px;             /* Espaço interno da caixa */
-    margin-bottom: 40px;       /* Espaço entre uma caixa e outra */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra suave para dar destaque */
-    text-align: left;          /* Texto dentro da caixa alinhado à esquerda */
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: left;
 }
 
 .categoria-titulo {
-    border-bottom: 2px solid #333; /* Linha abaixo do título da categoria */
+    border-bottom: 2px solid #333;
     padding-bottom: 10px;
     margin-bottom: 20px;
     color: #333;
 }
 
-/* Estilo de cada projeto dentro da caixa */
+/* Item Individual de Projeto */
 .projeto-item {
     margin-bottom: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px dashed #ccc; /* Separação entre projetos na mesma caixa */
+    border-bottom: 1px dashed #ccc;
 }
 
 .projeto-item:last-child {
-    border-bottom: none; /* Remove a linha do último item */
+    border-bottom: none;
 }
 
-/* --- NOVAS ADIÇÕES (Para a descrição e alinhamento dos botões) --- */
-
+/* Descrição e Botões */
 .descricao-projeto {
-    margin-bottom: 15px; /* Espaço entre o texto e os botões */
+    margin-bottom: 15px;
     font-size: 0.95em;
-    color: #555;         /* Cinza escuro para facilitar a leitura */
-    line-height: 1.5;    /* Altura da linha para não ficar tudo grudado */
+    color: #555;
+    line-height: 1.5;
 }
 
-/* Container flexível para alinhar botão e link lado a lado */
 .botoes {
-    display: flex;       /* Ativa o modo flexbox */
-    align-items: center; /* Centraliza verticalmente */
-    gap: 15px;           /* Define o espaço exato entre o botão azul e o texto do GitHub */
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-/* --------------------------------------------------------------- */
-
-/* Botões */
 .btn-projeto {
     display: inline-block;
     background-color: #007bff;
@@ -182,7 +181,7 @@ footer {
     text-decoration: none;
     border-radius: 5px;
     font-size: 0.9em;
-    transition: background 0.3s; /* Suaviza a mudança de cor ao passar o mouse */
+    transition: background 0.3s;
 }
 
 .btn-projeto:hover {
@@ -190,14 +189,23 @@ footer {
 }
 
 .link-github {
-    /* margin-left removido pois o 'gap' da classe .botoes já resolve isso */
     color: #333;
-    text-decoration: none;
     font-size: 0.9em;
-    font-weight: bold; /* Deixei um pouco mais grosso para destacar */
+    font-weight: bold;
 }
 
 .link-github:hover {
     text-decoration: underline;
-    color: #007bff; /* Fica azul quando passa o mouse */
+    color: #007bff;
+}
+
+/* =========================================
+   5. RODAPÉ (Geral)
+========================================= */
+footer {
+    text-align: center;
+    margin: 40px 0;
+    padding: 20px;
+    color: #777;
+    font-size: 0.9em;
 }
