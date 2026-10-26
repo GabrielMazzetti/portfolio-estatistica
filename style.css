@@ -192,6 +192,123 @@ h2.titulo {
     font-weight: 700;
 }
 
+/* Botões da home */
+.hero-actions,
+.contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.btn-claro,
+.btn-contorno {
+    display: inline-block;
+    padding: 11px 20px;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    border: 1px solid var(--cream);
+    transition: background .2s ease, color .2s ease;
+}
+
+.btn-claro { background: var(--cream); color: var(--navy); }
+.btn-claro:hover { background: transparent; color: var(--cream); }
+.btn-contorno { color: var(--cream); }
+.btn-contorno:hover { background: var(--cream); color: var(--navy); }
+
+/* Cards de destaque */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-top: 8px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 24px;
+    background: var(--navy-2);
+    border: 1px solid rgba(240, 238, 228, .2);
+    transition: transform .2s ease, border-color .2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    border-color: var(--cream);
+}
+
+.card-tag {
+    font-size: .65rem;
+    font-weight: 800;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    opacity: .7;
+}
+
+.card h3 {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    line-height: 1.1;
+}
+
+.card p {
+    color: var(--on-navy);
+    font-size: .92rem;
+    flex: 1;
+}
+
+.card-link {
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+/* Trajetória */
+.timeline {
+    list-style: none;
+}
+
+.timeline li {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 18px 0 18px 20px;
+    border-left: 3px solid var(--navy);
+    border-top: 1px solid var(--line);
+}
+
+.timeline li:first-child { border-top: none; }
+.timeline strong { text-transform: uppercase; letter-spacing: -.01em; }
+.timeline span { color: var(--muted); font-size: .95rem; }
+
+/* Habilidades */
+.skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 28px;
+}
+
+.skills h3 {
+    font-size: .72rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    opacity: .7;
+}
+
+.skills .tags { margin-top: 10px; }
+
+/* Em breve (categorias sem projeto) */
+.em-breve {
+    color: var(--muted);
+    font-size: .95rem;
+    padding-top: 18px;
+}
+
 /* =========================================
    4. PROJETOS
 ========================================= */
