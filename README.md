@@ -8,7 +8,7 @@ O projeto está em constante construção/atualização, portanto, não hesite e
 
 | Pasta / arquivo | Conteúdo |
 | --- | --- |
-| `index.html` | Página inicial (sobre, destaques, trajetória, habilidades e contato) |
+| `index.html` | Página inicial (sobre, trajetória e habilidades) |
 | `projetos.html` | Lista de projetos organizados por área |
 | `style.css` | Estilos do site |
 | `assets/` | Imagens usadas no site |
