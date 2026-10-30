@@ -9,12 +9,13 @@ O projeto está em constante construção/atualização, portanto, não hesite e
 | Pasta / arquivo | Conteúdo |
 | --- | --- |
 | `index.html` | Página inicial (sobre, trajetória e habilidades) |
-| `projetos.html` | Lista de projetos organizados por área |
+| `projetos.html` | Lista de projetos |
+| `sites.html` | Sites paralelos (projetos pessoais publicados na web) |
 | `style.css` | Estilos do site |
 | `assets/` | Imagens usadas no site |
-| `projetos/computacional/` | Case do App Gir (aplicativo interativo em Shiny) |
-| `projetos/estatistica-descritiva/` | Relatórios de estatística descritiva (ex.: Employee Attrition) |
-| `projetos/inferencia/` e `projetos/modelagem/` | Em desenvolvimento |
+| `projetos/computacional/` | Cases dos aplicativos Gir e Girolando (Shiny) |
+| `projetos/estatistica-descritiva/` | Relatório de Employee Attrition |
+| `projetos/inferencia/` e `projetos/modelagem/` | Pastas reservadas para projetos futuros |
 
 ## Contato
 

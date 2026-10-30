@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Case de portfólio: desenvolvimento de um aplicativo interativo para explorar dados do sumário de touros Girolando.">
+  <title>Mais liberdade para analisar (Girolando) — Case de portfólio</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <style>
+    :root {
+      --navy: #172642;
+      --navy-2: #223653;
+      --cream: #f0eee4;
+      --paper: #fbfaf5;
+      --ink: #172642;
+      --muted: #657083;
+      --line: rgba(23, 38, 66, .18);
+      --white: #fffef9;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .page { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .topline {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 24px 0; gap: 16px; font-size: .72rem; font-weight: 700;
+      letter-spacing: .13em; text-transform: uppercase;
+    }
+    .topline span:last-child { text-align: right; }
+    .hero {
+      position: relative; overflow: hidden; background: var(--navy); color: var(--cream);
+      min-height: 440px; padding: clamp(32px, 7vw, 82px);
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .hero::before, .hero::after {
+      content: ""; position: absolute; border: 1px solid rgba(240,238,228,.25);
+      border-radius: 50%; pointer-events: none;
+    }
+    .hero::before { width: 370px; height: 370px; right: -70px; top: -210px; }
+    .hero::after { width: 240px; height: 240px; right: -5px; top: -145px; }
+    .eyebrow {
+      margin: 0 0 18px; font-size: .75rem; letter-spacing: .17em;
+      text-transform: uppercase; font-weight: 700;
+    }
+    h1 {
+      max-width: 900px; margin: 0; font-size: clamp(3rem, 8.8vw, 7.8rem);
+      line-height: .88; letter-spacing: -.065em; text-transform: uppercase;
+      font-weight: 900;
+    }
+    .hero-bottom {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      gap: 24px; margin-top: 38px;
+    }
+    .hero-bottom p { max-width: 540px; margin: 0; color: #d8d8d0; }
+    .hero-side { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
+    .hero-index { font-size: .78rem; letter-spacing: .12em; white-space: nowrap; }
+    .cta {
+      display: inline-block; background: var(--cream); color: var(--navy);
+      padding: 11px 20px; font-size: .72rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; text-decoration: none; border: 1px solid var(--cream);
+      transition: background .2s ease, color .2s ease; white-space: nowrap;
+    }
+    .cta:hover { background: transparent; color: var(--cream); }
+    .intro-grid {
+      display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; margin: 24px 0;
+    }
+    .panel { padding: clamp(24px, 4vw, 42px); }
+    .paper { background: var(--paper); }
+    .blue { background: var(--navy); color: var(--cream); }
+    .section-label {
+      font-size: .68rem; font-weight: 800; letter-spacing: .16em;
+      text-transform: uppercase; margin: 0 0 18px; opacity: .78;
+    }
+    h2 {
+      margin: 0 0 20px; font-size: clamp(1.8rem, 4vw, 3.2rem);
+      line-height: .98; letter-spacing: -.045em; text-transform: uppercase;
+    }
+    h3 { margin: 0 0 12px; font-size: 1.2rem; line-height: 1.15; text-transform: uppercase; }
+    p { margin: 0 0 14px; }
+    p:last-child { margin-bottom: 0; }
+    .big-statement {
+      font-size: clamp(1.4rem, 3vw, 2.3rem); line-height: 1.18;
+      letter-spacing: -.035em; font-weight: 800;
+    }
+    .stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: var(--line); border: 1px solid var(--line); margin-top: 24px;
+    }
+    .stat { background: var(--paper); padding: 22px 18px; }
+    .stat strong { display: block; font-size: 1.05rem; text-transform: uppercase; line-height: 1.1; margin-bottom: 8px; }
+    .stat span { color: var(--muted); font-size: .83rem; }
+    .section-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0;
+    }
+    .number { font-size: .78rem; font-weight: 800; letter-spacing: .12em; margin-bottom: 18px; }
+    .feature-list { list-style: none; padding: 0; margin: 20px 0 0; }
+    .feature-list li { padding: 12px 0; border-top: 1px solid var(--line); }
+    .blue .feature-list li { border-color: rgba(240,238,228,.24); }
+    .decision {
+      display: grid; grid-template-columns: .72fr 1.28fr; gap: 24px; margin: 24px 0;
+    }
+    .decision-mark {
+      background: var(--navy-2); color: var(--cream); padding: 32px;
+      display: flex; flex-direction: column; justify-content: space-between; min-height: 280px;
+    }
+    .decision-mark .symbol { font-size: 5rem; line-height: 1; font-weight: 900; }
+    .decision-mark p { text-transform: uppercase; font-weight: 800; font-size: 1.2rem; line-height: 1.1; }
+    .pullquote {
+      border-left: 4px solid var(--navy); padding-left: 20px; margin: 24px 0;
+      font-size: 1.15rem; font-weight: 700; line-height: 1.35;
+    }
+    .result-band {
+      background: var(--navy); color: var(--cream); padding: clamp(28px, 5vw, 52px);
+      margin: 24px 0; display: grid; grid-template-columns: .8fr 1.2fr; gap: 32px;
+    }
+    .result-band h2 { font-size: clamp(2rem, 4.5vw, 4rem); }
+    .tag {
+      display: inline-block; border: 1px solid rgba(240,238,228,.42);
+      padding: 7px 10px; margin: 6px 6px 0 0; font-size: .7rem;
+      letter-spacing: .08em; text-transform: uppercase;
+    }
+    .caveat {
+      margin-top: 18px; padding: 18px 20px; background: rgba(23,38,66,.06);
+      border-left: 3px solid var(--navy); font-size: .92rem;
+    }
+    .closing {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0 50px;
+    }
+    .footer {
+      border-top: 1px solid var(--line); padding: 20px 0 30px;
+      display: flex; justify-content: space-between; gap: 20px;
+      color: var(--muted); font-size: .75rem; text-transform: uppercase; letter-spacing: .08em;
+    }
+    @media (max-width: 700px) {
+      .page { width: min(100% - 24px, 1120px); }
+      .topline { font-size: .62rem; }
+      .hero { min-height: 390px; padding: 28px; }
+      .hero-bottom, .footer { align-items: flex-start; flex-direction: column; }
+      .hero-side { align-items: flex-start; }
+      .intro-grid, .section-grid, .decision, .result-band, .closing { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+      .stat { padding: 18px; }
+      .decision-mark { min-height: 200px; }
+      .decision-mark .symbol { font-size: 3.5rem; }
+    }
+    @media print {
+      body { background: white; }
+      .page { width: 100%; }
+      .panel, .hero, .result-band, .decision-mark { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topline">
+      <a href="../../projetos.html">&larr; Voltar aos projetos</a>
+      <span>Iniciação científica · Embrapa · 2026</span>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">Um case de aplicação estatística</p>
+      <h1>Mais liberdade<br>para analisar</h1>
+      <div class="hero-bottom">
+        <p>Transformar um sumário estático de touros Girolando em uma ferramenta interativa de exploração de dados — sem abrir mão da responsabilidade estatística.</p>
+        <div class="hero-side">
+          <span class="hero-index">CASE 02 / 2026</span>
+          <a class="cta" href="https://auax2h-gabriel-affonso.shinyapps.io/app_girolando/" target="_blank" rel="noopener">Abrir aplicativo ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro-grid">
+      <article class="panel paper">
+        <p class="section-label">01 / Contexto</p>
+        <h2>Dos dados à exploração</h2>
+        <p>Durante minha iniciação científica na Embrapa, desenvolvi a implementação de um aplicativo interativo para explorar os dados do sumário anual de touros Girolando.</p>
+        <p>O projeto foi idealizado pelo meu orientador, que também sugeriu ferramentas e melhorias ao longo do desenvolvimento. Fiquei responsável por toda a programação do aplicativo.</p>
+      </article>
+      <article class="panel blue">
+        <p class="section-label">A ideia central</p>
+        <p class="big-statement">Não bastava apresentar os dados de outra forma. A proposta era dar ao usuário mais autonomia para investigá-los.</p>
+        <div style="margin-top:26px">
+          <span class="tag">Criadores de gado leiteiro</span>
+          <span class="tag">Pesquisadores</span>
+          <span class="tag">Dados de touros Girolando</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel paper">
+      <p class="section-label">02 / Problema</p>
+      <h2>Um PDF limita as perguntas que o usuário pode fazer</h2>
+      <p>O sumário reunia informações relevantes, mas o formato estático restringia a exploração dos dados. O usuário ficava limitado às formas de consulta e apresentação já disponíveis na publicação.</p>
+      <p>O aplicativo foi pensado para permitir que criadores e pesquisadores definissem seus próprios critérios, em vez de apenas consultar informações previamente organizadas.</p>
+      <div class="stats">
+        <div class="stat"><strong>Filtrar</strong><span>Aplicar cortes por produção de leite e outras características.</span></div>
+        <div class="stat"><strong>Selecionar</strong><span>Encontrar touros que atendam a medidas lineares escolhidas.</span></div>
+        <div class="stat"><strong>Explorar</strong><span>Investigar os dados conforme a pergunta do próprio usuário.</span></div>
+      </div>
+    </section>
+
+    <section class="section-grid">
+      <article class="panel blue">
+        <p class="number">03 / Minha contribuição</p>
+        <h2>Da ideia ao aplicativo</h2>
+        <p>Programei todo o aplicativo. Algumas ferramentas já existiam em um script; outras foram retiradas ou incorporadas durante o desenvolvimento.</p>
+        <p>Meu orientador conduziu a concepção do projeto e contribuiu com ideias para ferramentas e melhorias. Minha responsabilidade foi transformar essas propostas em uma aplicação funcional.</p>
+      </article>
+      <article class="panel paper">
+        <p class="number">04 / Evolução</p>
+        <h2>O escopo mudou ao longo do caminho</h2>
+        <p>O aplicativo não foi apenas uma transcrição direta do script original. As funcionalidades foram revistas durante o processo, conforme as ferramentas eram avaliadas e novas possibilidades surgiam.</p>
+        <p>Essa evolução exigiu decisões tanto de implementação quanto sobre quais recursos deveriam permanecer na aplicação.</p>
+      </article>
+    </section>
+
+    <section class="decision">
+      <div class="decision-mark">
+        <span class="section-label">05 / Decisão crítica</span>
+        <span class="symbol">×</span>
+        <p>Nem toda ferramenta deve permanecer</p>
+      </div>
+      <article class="panel paper">
+        <p class="section-label">Responsabilidade estatística</p>
+        <h2>Retirar uma funcionalidade também é uma decisão</h2>
+        <p>Uma das ferramentas foi retirada porque os intervalos de confiança associados a ela eram muito amplos e pouco informativos para a finalidade pretendida.</p>
+        <p>Em vez de manter a funcionalidade apenas porque estava implementada, a decisão foi removê-la. Uma ferramenta estatística precisa oferecer informação útil, não apenas produzir um resultado.</p>
+        <div class="pullquote">A aplicação precisa ser avaliada não só pelo que consegue calcular, mas também pela informação que entrega ao usuário.</div>
+      </article>
+    </section>
+
+    <section class="result-band">
+      <div>
+        <p class="section-label">06 / Resultado</p>
+        <h2>Uma aplicação publicada</h2>
+      </div>
+      <div>
+        <p>O aplicativo está concluído e publicado na nuvem do Shiny. A ferramenta reúne recursos para uma exploração mais flexível dos dados do sumário.</p>
+        <p><a class="cta" href="https://auax2h-gabriel-affonso.shinyapps.io/app_girolando/" target="_blank" rel="noopener">Abrir aplicativo ↗</a></p>
+        <p>O resultado demonstrável é a aplicação em funcionamento. Não há dados de uso que permitam afirmar ou quantificar seu impacto sobre criadores e pesquisadores.</p>
+        <div class="caveat" style="background:rgba(240,238,228,.08); border-color:var(--cream)">
+          <strong>Limite importante</strong><br>
+          O potencial de ampliar a exploração dos dados é o objetivo do projeto; mudanças no comportamento dos usuários ainda precisam ser verificadas com o uso do aplicativo.
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <article class="panel paper">
+        <p class="section-label">07 / Aprendizado</p>
+        <h2>O que faria diferente</h2>
+        <p>Começaria usando uma versão mais recente do Shiny. Essa escolha teria economizado tempo durante o desenvolvimento.</p>
+        <p>Fora isso, não identifico mudanças que faria no código atual. O projeto também reforçou a importância de escolher adequadamente as ferramentas de desenvolvimento desde o início.</p>
+      </article>
+      <article class="panel blue">
+        <p class="section-label">Em resumo</p>
+        <h2>O que este projeto demonstra</h2>
+        <ul class="feature-list">
+          <li>Implementação integral de uma aplicação interativa.</li>
+          <li>Tradução de necessidades de exploração em funcionalidades.</li>
+          <li>Revisão de ferramentas durante o desenvolvimento.</li>
+          <li>Atenção à utilidade e à interpretação de resultados estatísticos.</li>
+        </ul>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <span>© 2026 — Gabriel Sanábio Mazzetti Affonso</span>
+      <span>Aplicativo interativo para dados do sumário de touros Girolando</span>
+    </footer>
+  </main>
+</body>
+</html>
+

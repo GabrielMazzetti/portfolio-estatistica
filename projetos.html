@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meus Projetos - Gabriel Mazzetti</title>
-    <meta name="description" content="Projetos de estatística e análise de dados de Gabriel Mazzetti, organizados por área.">
+    <meta name="description" content="Projetos de estatística e análise de dados de Gabriel Mazzetti: aplicativos interativos, relatórios e materiais didáticos.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -14,63 +14,61 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="projetos.html" class="ativo">Meus Projetos</a></li>
+            <li><a href="sites.html">Sites Paralelos</a></li>
         </ul>
     </nav>
 
     <main class="page">
         <header class="page-title">
             <p class="eyebrow">Portfólio</p>
-            <h1>Projetos<br>por área</h1>
-            <p class="intro">Cada projeto reúne o relatório ou a aplicação e o código-fonte no GitHub.</p>
+            <h1>Projetos</h1>
+            <p class="intro">Aplicativos, relatórios e materiais que desenvolvi, cada um com a pergunta que buscou responder.</p>
         </header>
 
         <section class="categoria-box">
-            <h2 class="categoria-titulo"><small>01</small>Projetos Computacionais</h2>
             <div class="lista-itens">
+
                 <article class="projeto-item">
                     <h3>App Gir — Exploração de dados de touros</h3>
                     <p>Aplicativo interativo para explorar os dados do sumário anual de touros Gir, desenvolvido durante a iniciação científica na Embrapa.</p>
+                    <div class="projeto-tags"><span>R</span><span>Shiny</span></div>
                     <div class="botoes">
-                        <a href="projetos/computacional/app_gir.html" class="btn-projeto">Ver Case</a>
-                        <a href="https://github.com/GabrielMazzetti/portfolio-estatistica/tree/main/projetos/computacional" target="_blank" class="link-github">GitHub</a>
+                        <a href="https://auax2h-gabriel-affonso.shinyapps.io/app_rigth_sire_b5/" target="_blank" rel="noopener" class="btn-projeto">Abrir Aplicativo</a>
+                        <a href="projetos/computacional/app_gir.html" class="link-github">Ver Case</a>
+                    </div>
+                </article>
+
+                <article class="projeto-item">
+                    <h3>App Girolando — Exploração de dados de touros</h3>
+                    <p>Aplicativo interativo para explorar os dados do sumário anual de touros Girolando, com a mesma proposta do App Gir, desenvolvido durante a iniciação científica na Embrapa.</p>
+                    <div class="projeto-tags"><span>R</span><span>Shiny</span></div>
+                    <div class="botoes">
+                        <a href="https://auax2h-gabriel-affonso.shinyapps.io/app_girolando/" target="_blank" rel="noopener" class="btn-projeto">Abrir Aplicativo</a>
+                        <a href="projetos/computacional/app_girolando.html" class="link-github">Ver Case</a>
                     </div>
                 </article>
 
                 <article class="projeto-item">
                     <h3>Python, Web Scraping e Livros Digitais</h3>
                     <p>Livro digital de introdução ao Python para estatísticos, escrito em Quarto: manipulação de dados com pandas, simulações com NumPy e coleta de dados na web.</p>
+                    <div class="projeto-tags"><span>Python</span><span>Quarto</span><span>Web scraping</span></div>
                     <div class="botoes">
                         <a href="https://gabrielmazzetti.github.io/python_book/" target="_blank" rel="noopener" class="btn-projeto">Ler o Livro</a>
                         <a href="https://github.com/GabrielMazzetti/python_book" target="_blank" rel="noopener" class="link-github">GitHub</a>
                     </div>
                 </article>
-            </div>
-        </section>
-
-        <section class="categoria-box">
-            <h2 class="categoria-titulo"><small>02</small>Estatística Descritiva</h2>
-            <div class="lista-itens">
 
                 <article class="projeto-item">
                     <h3>Análise de Employee Attrition</h3>
                     <p id="desc-projeto1" class="descricao-projeto">Carregando descrição do README...</p>
+                    <div class="projeto-tags"><span>Estatística descritiva</span><span>Quarto</span></div>
                     <div class="botoes">
                         <a href="projetos/estatistica-descritiva/projeto_employee_attrition/employee_attrition_code.html" class="btn-projeto">Ver Relatório</a>
-                        <a href="https://github.com/GabrielMazzetti/portfolio-estatistica/tree/main/projetos/estatistica-descritiva/projeto_employee_attrition" target="_blank" class="link-github">GitHub</a>
+                        <a href="https://github.com/GabrielMazzetti/portfolio-estatistica/tree/main/projetos/estatistica-descritiva/projeto_employee_attrition" target="_blank" rel="noopener" class="link-github">GitHub</a>
                     </div>
                 </article>
 
             </div>
-        </section>
-
-        <section class="categoria-box">
-            <h2 class="categoria-titulo"><small>03</small>Inferência Paramétrica</h2>
-            <p class="em-breve">Projetos em desenvolvimento. Em breve.</p>
-        </section>
-
-        <section class="categoria-box">
-            <h2 class="categoria-titulo"><small>04</small>Modelagem</h2>
-            <p class="em-breve">Projetos em desenvolvimento. Em breve.</p>
         </section>
 
     </main>

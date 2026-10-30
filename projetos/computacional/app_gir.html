@@ -59,7 +59,15 @@
       gap: 24px; margin-top: 38px;
     }
     .hero-bottom p { max-width: 540px; margin: 0; color: #d8d8d0; }
+    .hero-side { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
     .hero-index { font-size: .78rem; letter-spacing: .12em; white-space: nowrap; }
+    .cta {
+      display: inline-block; background: var(--cream); color: var(--navy);
+      padding: 11px 20px; font-size: .72rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; text-decoration: none; border: 1px solid var(--cream);
+      transition: background .2s ease, color .2s ease; white-space: nowrap;
+    }
+    .cta:hover { background: transparent; color: var(--cream); }
     .intro-grid {
       display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; margin: 24px 0;
     }
@@ -135,6 +143,7 @@
       .topline { font-size: .62rem; }
       .hero { min-height: 390px; padding: 28px; }
       .hero-bottom, .footer { align-items: flex-start; flex-direction: column; }
+      .hero-side { align-items: flex-start; }
       .intro-grid, .section-grid, .decision, .result-band, .closing { grid-template-columns: 1fr; }
       .stats { grid-template-columns: 1fr; }
       .stat { padding: 18px; }
@@ -160,7 +169,10 @@
       <h1>Mais liberdade<br>para analisar</h1>
       <div class="hero-bottom">
         <p>Transformar um sumário estático de touros Gir em uma ferramenta interativa de exploração de dados — sem abrir mão da responsabilidade estatística.</p>
-        <span class="hero-index">CASE 01 / 2026</span>
+        <div class="hero-side">
+          <span class="hero-index">CASE 01 / 2026</span>
+          <a class="cta" href="https://auax2h-gabriel-affonso.shinyapps.io/app_rigth_sire_b5/" target="_blank" rel="noopener">Abrir aplicativo ↗</a>
+        </div>
       </div>
     </section>
 
@@ -227,14 +239,15 @@
     <section class="result-band">
       <div>
         <p class="section-label">06 / Resultado</p>
-        <h2>Uma aplicação pronta para publicação</h2>
+        <h2>Uma aplicação publicada</h2>
       </div>
       <div>
-        <p>O código do aplicativo está concluído, e a publicação está prevista para a nuvem do Shiny. A ferramenta reúne recursos para uma exploração mais flexível dos dados do sumário.</p>
-        <p>O resultado demonstrável nesta etapa é a construção da aplicação. Como ela ainda será publicada, não há dados de uso que permitam afirmar ou quantificar seu impacto sobre criadores e pesquisadores.</p>
+        <p>O aplicativo está concluído e publicado na nuvem do Shiny. A ferramenta reúne recursos para uma exploração mais flexível dos dados do sumário.</p>
+        <p><a class="cta" href="https://auax2h-gabriel-affonso.shinyapps.io/app_rigth_sire_b5/" target="_blank" rel="noopener">Abrir aplicativo ↗</a></p>
+        <p>O resultado demonstrável é a aplicação em funcionamento. Não há dados de uso que permitam afirmar ou quantificar seu impacto sobre criadores e pesquisadores.</p>
         <div class="caveat" style="background:rgba(240,238,228,.08); border-color:var(--cream)">
           <strong>Limite importante</strong><br>
-          O potencial de ampliar a exploração dos dados é o objetivo do projeto; mudanças no comportamento dos usuários ainda precisam ser verificadas após a publicação.
+          O potencial de ampliar a exploração dos dados é o objetivo do projeto; mudanças no comportamento dos usuários ainda precisam ser verificadas com o uso do aplicativo.
         </div>
       </div>
     </section>
@@ -259,7 +272,7 @@
     </section>
 
     <footer class="footer">
-      <span>Portfólio de Estatística · 2026</span>
+      <span>© 2026 — Gabriel Sanábio Mazzetti Affonso</span>
       <span>Aplicativo interativo para dados do sumário de touros Gir</span>
     </footer>
   </main>
