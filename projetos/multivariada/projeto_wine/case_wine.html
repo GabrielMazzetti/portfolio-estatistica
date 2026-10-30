@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Case de portfólio: análise multivariada (PCA, Análise Fatorial e LDA/QDA) aplicada à certificação de vinhos do conjunto Wine (UCI).">
+  <title>Da química à procedência — Case de portfólio</title>
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <style>
+    :root {
+      --navy: #172642;
+      --navy-2: #223653;
+      --cream: #f0eee4;
+      --paper: #fbfaf5;
+      --ink: #172642;
+      --muted: #657083;
+      --line: rgba(23, 38, 66, .18);
+      --white: #fffef9;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .page { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .topline {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 24px 0; gap: 16px; font-size: .72rem; font-weight: 700;
+      letter-spacing: .13em; text-transform: uppercase;
+    }
+    .topline span:last-child { text-align: right; }
+    .hero {
+      position: relative; overflow: hidden; background: var(--navy); color: var(--cream);
+      min-height: 440px; padding: clamp(32px, 7vw, 82px);
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .hero::before, .hero::after {
+      content: ""; position: absolute; border: 1px solid rgba(240,238,228,.25);
+      border-radius: 50%; pointer-events: none;
+    }
+    .hero::before { width: 370px; height: 370px; right: -70px; top: -210px; }
+    .hero::after { width: 240px; height: 240px; right: -5px; top: -145px; }
+    .eyebrow {
+      margin: 0 0 18px; font-size: .75rem; letter-spacing: .17em;
+      text-transform: uppercase; font-weight: 700;
+    }
+    h1 {
+      max-width: 900px; margin: 0; font-size: clamp(3rem, 8.8vw, 7.8rem);
+      line-height: .88; letter-spacing: -.065em; text-transform: uppercase;
+      font-weight: 900;
+    }
+    .hero-bottom {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      gap: 24px; margin-top: 38px;
+    }
+    .hero-bottom p { max-width: 540px; margin: 0; color: #d8d8d0; }
+    .hero-side { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
+    .hero-index { font-size: .78rem; letter-spacing: .12em; white-space: nowrap; }
+    .cta {
+      display: inline-block; background: var(--cream); color: var(--navy);
+      padding: 11px 20px; font-size: .72rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; text-decoration: none; border: 1px solid var(--cream);
+      transition: background .2s ease, color .2s ease; white-space: nowrap;
+    }
+    .cta:hover { background: transparent; color: var(--cream); }
+    .intro-grid {
+      display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; margin: 24px 0;
+    }
+    .panel { padding: clamp(24px, 4vw, 42px); }
+    .paper { background: var(--paper); }
+    .blue { background: var(--navy); color: var(--cream); }
+    .section-label {
+      font-size: .68rem; font-weight: 800; letter-spacing: .16em;
+      text-transform: uppercase; margin: 0 0 18px; opacity: .78;
+    }
+    h2 {
+      margin: 0 0 20px; font-size: clamp(1.8rem, 4vw, 3.2rem);
+      line-height: .98; letter-spacing: -.045em; text-transform: uppercase;
+    }
+    h3 { margin: 0 0 12px; font-size: 1.2rem; line-height: 1.15; text-transform: uppercase; }
+    p { margin: 0 0 14px; }
+    p:last-child { margin-bottom: 0; }
+    .big-statement {
+      font-size: clamp(1.4rem, 3vw, 2.3rem); line-height: 1.18;
+      letter-spacing: -.035em; font-weight: 800;
+    }
+    .stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: var(--line); border: 1px solid var(--line); margin-top: 24px;
+    }
+    .stat { background: var(--paper); padding: 22px 18px; }
+    .stat strong { display: block; font-size: 1.05rem; text-transform: uppercase; line-height: 1.1; margin-bottom: 8px; }
+    .stat span { color: var(--muted); font-size: .83rem; }
+    .section-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0;
+    }
+    .number { font-size: .78rem; font-weight: 800; letter-spacing: .12em; margin-bottom: 18px; }
+    .feature-list { list-style: none; padding: 0; margin: 20px 0 0; }
+    .feature-list li { padding: 12px 0; border-top: 1px solid var(--line); }
+    .blue .feature-list li { border-color: rgba(240,238,228,.24); }
+    .decision {
+      display: grid; grid-template-columns: .72fr 1.28fr; gap: 24px; margin: 24px 0;
+    }
+    .decision-mark {
+      background: var(--navy-2); color: var(--cream); padding: 32px;
+      display: flex; flex-direction: column; justify-content: space-between; min-height: 280px;
+    }
+    .decision-mark .symbol { font-size: 5rem; line-height: 1; font-weight: 900; }
+    .decision-mark p { text-transform: uppercase; font-weight: 800; font-size: 1.2rem; line-height: 1.1; }
+    .pullquote {
+      border-left: 4px solid var(--navy); padding-left: 20px; margin: 24px 0;
+      font-size: 1.15rem; font-weight: 700; line-height: 1.35;
+    }
+    .result-band {
+      background: var(--navy); color: var(--cream); padding: clamp(28px, 5vw, 52px);
+      margin: 24px 0; display: grid; grid-template-columns: .8fr 1.2fr; gap: 32px;
+    }
+    .result-band h2 { font-size: clamp(2rem, 4.5vw, 4rem); }
+    .tag {
+      display: inline-block; border: 1px solid rgba(240,238,228,.42);
+      padding: 7px 10px; margin: 6px 6px 0 0; font-size: .7rem;
+      letter-spacing: .08em; text-transform: uppercase;
+    }
+    .caveat {
+      margin-top: 18px; padding: 18px 20px; background: rgba(23,38,66,.06);
+      border-left: 3px solid var(--navy); font-size: .92rem;
+    }
+    .closing {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0 50px;
+    }
+    .footer {
+      border-top: 1px solid var(--line); padding: 20px 0 30px;
+      display: flex; justify-content: space-between; gap: 20px;
+      color: var(--muted); font-size: .75rem; text-transform: uppercase; letter-spacing: .08em;
+    }
+    @media (max-width: 700px) {
+      .page { width: min(100% - 24px, 1120px); }
+      .topline { font-size: .62rem; }
+      .hero { min-height: 390px; padding: 28px; }
+      .hero-bottom, .footer { align-items: flex-start; flex-direction: column; }
+      .hero-side { align-items: flex-start; }
+      .intro-grid, .section-grid, .decision, .result-band, .closing { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+      .stat { padding: 18px; }
+      .decision-mark { min-height: 200px; }
+      .decision-mark .symbol { font-size: 3.5rem; }
+    }
+    @media print {
+      body { background: white; }
+      .page { width: 100%; }
+      .panel, .hero, .result-band, .decision-mark { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topline">
+      <a href="../../../projetos.html?v=4">&larr; Voltar aos projetos</a>
+      <span>Análise Multivariada · UFJF · 2026</span>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">Um case de controle de qualidade e classificação</p>
+      <h1>Da química<br>à procedência</h1>
+      <div class="hero-bottom">
+        <p>Como identificar e certificar a cultivar de origem de vinhos italianos a partir de 13 medições químicas — combinando redução de dimensionalidade, fatores latentes e análise discriminante.</p>
+        <div class="hero-side">
+          <span class="hero-index">CASE 03 / 2026</span>
+          <a class="cta" href="wine.html">Abrir relatório ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro-grid">
+      <article class="panel paper">
+        <p class="section-label">01 / Contexto</p>
+        <h2>178 amostras, 13 variáveis e três cultivares</h2>
+        <p>O estudo analisa o conjunto de dados <strong>Wine</strong> (<em>UCI Machine Learning Repository</em>), formado por medições laboratoriais de 178 amostras de vinhos cultivados em uma mesma região da Itália, distribuídas em três castas distintas (59 na Cultivar 1, 71 na Cultivar 2 e 48 na Cultivar 3).</p>
+        <p>Para cada amostra foram aferidas 13 variáveis químicas contínuas — como teor alcoólico, compostos fenólicos, flavonoides, intensidade de cor, tonalidade, cinzas e prolina.</p>
+      </article>
+      <article class="panel blue">
+        <p class="section-label">A ideia central</p>
+        <p class="big-statement">Simular o desafio de uma vinícola ou órgão de fiscalização: certificar a origem de um lote desconhecido apenas pela sua composição química.</p>
+        <div style="margin-top:26px">
+          <span class="tag">Controle de qualidade</span>
+          <span class="tag">178 amostras · 13 variáveis</span>
+          <span class="tag">PCA · Fatorial · LDA/QDA</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel paper">
+      <p class="section-label">02 / Problema</p>
+      <h2>Escalas heterogêneas e informação redundante</h2>
+      <p>As variáveis químicas operam em ordens de grandeza muito distintas — a prolina varia na casa das centenas e milhares, enquanto fenóis não flavonoides ficam entre 0 e 1 — e exibem fortes correlações entre si, especialmente no grupo fenólico (flavonoides, fenóis totais e absorbância OD280/OD315).</p>
+      <p>Padronizar os dados e partir da matriz de correlação foi indispensável para impedir que variáveis de maior variância absoluta dominassem a análise apenas por efeito de escala.</p>
+      <div class="stats">
+        <div class="stat"><strong>Sintetizar</strong><span>PCA por decomposição espectral manual: 2 componentes retêm 55,4% da variância e 3 chegam a 66,5%.</span></div>
+        <div class="stat"><strong>Interpretar</strong><span>Análise Fatorial com rotação Varimax para isolar construtos químicos latentes e medir comunalidades.</span></div>
+        <div class="stat"><strong>Certificar</strong><span>Classificação supervisionada via LDA e QDA validada por Leave-One-Out (LOOCV) em amostras inéditas.</span></div>
+      </div>
+    </section>
+
+    <section class="section-grid">
+      <article class="panel blue">
+        <p class="number">03 / Estrutura química</p>
+        <h2>O que move a variação entre os vinhos</h2>
+        <p>Implementei a PCA manualmente em R a partir da decomposição espectral da matriz de correlação, explicitando autovalores, autovetores e escores sem depender de funções prontas.</p>
+        <p>A CP1 sintetiza o perfil fenólico, a CP2 contrasta intensidade de cor e álcool com tonalidade, e a CP3 captura a composição mineral (cinzas e alcalinidade). Na projeção tridimensional interativa, as três cultivares já se separam com nitidez antes mesmo de usar os rótulos de classe.</p>
+      </article>
+      <article class="panel paper">
+        <p class="number">04 / Fatores latentes</p>
+        <h2>Aderência ao modelo acima de atalhos</h2>
+        <p>Na Análise Fatorial por máxima verossimilhança, o teste de razão de verossimilhança rejeitou modelos de 1 a 5 fatores (p &lt; 0,05) e indicou bom ajuste apenas com 6 fatores (p = 0,3093).</p>
+        <p>Embora 6 fatores representem uma redução modesta frente às 13 variáveis originais, a decisão preservou a aderência estatística ao modelo proposto e revelou comunalidades muito altas em cinzas, magnésio e intensidade de cor (0,995), separando-as de variáveis com maior variação específica, como fenóis não flavonoides (0,417).</p>
+      </article>
+    </section>
+
+    <section class="decision">
+      <div class="decision-mark">
+        <span class="section-label">05 / Decisão crítica</span>
+        <span class="symbol">&approx;</span>
+        <p>Mais parâmetros nem sempre significam um modelo melhor</p>
+      </div>
+      <article class="panel paper">
+        <p class="section-label">Parcimônia e estabilidade</p>
+        <h2>Por que preferir a LDA mesmo com acurácia ligeiramente menor que a QDA</h2>
+        <p>Na validação cruzada Leave-One-Out (LOOCV), a QDA alcançou 99,44% de acurácia (erro de 0,56%, 1 amostra incorreta em 178) e a LDA obteve 98,88% (erro de 1,12%, 2 amostras incorretas).</p>
+        <p>Diante de desempenhos equivalentes na prática, a escolha recai sobre a <strong>LDA</strong>: por estimar uma única matriz de covariância comum (<em>pooled</em>) em vez de uma matriz por cultivar, ela exige muito menos parâmetros e oferece maior estabilidade analítica em amostras de tamanho moderado.</p>
+        <div class="pullquote">Em controle de qualidade, classificar não basta: é preciso conhecer a confiança associada a cada decisão antes de certificar um lote.</div>
+      </article>
+    </section>
+
+    <section class="result-band">
+      <div>
+        <p class="section-label">06 / Resultado</p>
+        <h2>Do classificador ao alerta de inspeção</h2>
+      </div>
+      <div>
+        <p>Para testar a operação de certificação, simulei seis novas amostras desconhecidas (duas por cultivar) a partir da distribuição normal multivariada com matriz de covariância <em>pooled</em>. A LDA classificou corretamente todas as seis amostras.</p>
+        <p>Cinco lotes apresentaram probabilidade <em>a posteriori</em> superior a 99%, mas o <strong>Lote Simulado 2</strong> foi classificado na Cultivar 1 com <strong>77,18%</strong> — um exemplo concreto de amostra que, mesmo classificada na casta certa, seria encaminhada para reanálise laboratorial antes da certificação.</p>
+        <p><a class="cta" href="wine.html">Abrir relatório ↗</a></p>
+        <div class="caveat" style="background:rgba(240,238,228,.08); border-color:var(--cream)">
+          <strong>Limite importante</strong><br>
+          As taxas estimadas por LOOCV referem-se às 178 amostras de três cultivares de uma mesma região italiana, e o lote inédito foi simulado sob normalidade multivariada. Em aplicação industrial, novas safras e variações laboratoriais exigiriam validação com amostras externas reais.
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <article class="panel paper">
+        <p class="section-label">07 / Abordagem</p>
+        <h2>Três técnicas que se complementam</h2>
+        <p>Combinar PCA, Análise Fatorial e Análise Discriminante evitou tratar a classificação como caixa-preta: primeiro compreendeu-se geometricamente e por fatores latentes o que diferencia quimicamente os vinhos, para então construir e auditar a regra de decisão.</p>
+        <p>O relatório completo reúne todo o código em R, matrizes de cargas, gráficos diagnósticos e a projeção 3D interativa dos escores.</p>
+      </article>
+      <article class="panel blue">
+        <p class="section-label">Em resumo</p>
+        <h2>O que este projeto demonstra</h2>
+        <ul class="feature-list">
+          <li>Implementação manual da PCA via decomposição espectral da matriz de correlação.</li>
+          <li>Escolha fundamentada do número de fatores por teste de razão de verossimilhança.</li>
+          <li>Comparação entre LDA e QDA com validação cruzada Leave-One-Out (LOOCV) e critério de parcimônia.</li>
+          <li>Uso das probabilidades <em>a posteriori</em> como regra prática de alerta em controle de qualidade.</li>
+        </ul>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <span>© 2026 — Gabriel Sanábio Mazzetti Affonso</span>
+      <span>Análise multivariada do conjunto de dados Wine (UCI)</span>
+    </footer>
+  </main>
+</body>
+</html>
+

@@ -1,0 +1,443 @@
+---
+title: "Análise Multivariada do conjunto de dados Wine"
+author: "Gabriel Sanábio Mazzetti Affonso"
+date: today
+format: 
+  html:
+    toc: true
+    toc-location: left
+    theme:
+      light: journal
+      dark: darkly
+    theme-toggle: true
+    embed-resources: true
+    code-fold: true
+    code-summary: "Exibir Código"
+    header-includes: |
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+      <style>
+        /* Cria o espaço e o ícone após o sumário */
+        #TOC::after {
+          content: "\F3ED"; /* Código do ícone GitHub no Bootstrap Icons */
+          font-family: "bootstrap-icons";
+          display: block;
+          text-align: center;
+          font-size: 2rem;
+          margin-top: 20px;
+          padding-top: 10px;
+          border-top: 1px solid #dee2e6;
+          cursor: pointer;
+        }
+        
+        /* Torna o ícone clicável */
+        #TOC {
+          position: relative;
+        }
+        
+        #TOC .github-link {
+          position: absolute;
+          bottom: -50px;
+          left: 50%;
+          transform: translateX(-50%);
+          text-decoration: none;
+          color: inherit;
+          font-size: 0.8rem;
+          text-align: center;
+          width: 100%;
+        }
+      </style>
+    include-after-body:
+      text: |
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          var toc = document.querySelector('#TOC');
+          if (toc) {
+            var a = document.createElement('a');
+            a.href = "https://github.com/GabrielMazzetti";
+            a.target = "_blank";
+            a.className = "github-link";
+            toc.appendChild(a);
+            
+            // Faz o ícone (gerado pelo CSS ::after) ser clicável
+            toc.addEventListener('click', function(e) {
+              if (e.offsetY > toc.offsetHeight - 50) {
+                window.open("https://github.com/GabrielMazzetti", "_blank");
+              }
+            });
+          }
+        });
+        </script>
+bibliography: referencias.bib        
+execute:
+  warning: false
+  message: false
+
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(corrplot)
+library(RColorBrewer)
+library(knitr)
+```
+
+
+# Introdução
+
+Neste relatório realizaremos uma análise multivariada aplicada ao conjunto de dados **Wine**, extraído do *UCI Machine Learning Repository* [@lichman2013uci]. O banco de dados é composto por análises químicas de 178 amostras de vinhos cultivados em uma mesma região da Itália. A variável resposta de interesse consiste na origem do vinho, que se divide em três cultivares (castas) distintas, estabelecendo três classes a serem avaliadas.  Para cada amostra, foram aferidas 13 variáveis contínuas, que quantificam características como teor alcoólico, composição fenólica, intensidade de cor e alcalinidade. As técnicas que aplicaremos são fundamentadas na literatura indicada na bibliografia da disciplina de Análise Multivariada [@johnson2007applied]:  
+
+- Análise de Componentes Principais (PCA): Conduzida por meio da decomposição espectral manual da matriz de correlação, visando a redução de dimensionalidade.  
+
+- Análise Fatorial (FA): Ajustada via máxima verossimilhança para identificar construtos latentes inerentes à composição do vinho.  
+
+- Análise Discriminante (LDA e QDA): Modelada sob a ótica de um problema de controle de qualidade, objetivando classificar e certificar a procedência (cultivar) de lotes desconhecidos a partir das medições químicas.
+
+## Análise Exploratória dos Dados
+
+Antes da aplicação dos métodos, precisamos analisar a base de dados e suas características. Para facilitar a visualização, renomeei as colunas de acordo com seus nomes técnicos, presentes no repositório de onde vieram os dados.
+
+```{r}
+dados <- read.table("wine.dat", header = TRUE)
+
+nomes_variaveis <- c("Classe", "Alcohol", "Malic_acid", "Ash", "Alcalinity_ash",
+                     "Magnesium", "Total_phenols", "Flavanoids", "Nonflavanoid_phenols",
+                     "Proanthocyanins", "Color_intensity", "Hue", "OD280_OD315", "Proline")
+colnames(dados) <- nomes_variaveis
+
+dados$Classe <- factor(dados$Classe, labels = c("Cultivar 1", "Cultivar 2", "Cultivar 3"))
+
+X <- dados[, -1] 
+classe <- dados$Classe
+
+summary(X)
+```
+
+A análise exploratória sugere que algumas variáveis apresentam elevado poder de discriminação entre as cultivares. Destacam-se especialmente Flavanoids, Color_intensity, OD280_OD315 e Proline, cujas distribuições diferem substancialmente entre os grupos. Esse comportamento indica que essas características provavelmente exercerão papel importante nas técnicas supervisionadas apresentadas posteriormente.
+
+Dado que as escalas das variáveis são bastante heterogêneas, a avaliação da estrutura de dependência linear deve ser feita através da matriz de correlação (que padroniza as variâncias).
+
+```{r}
+R <- cor(X)
+
+cores_divergente <- brewer.pal(n = 11, name = "RdBu")
+
+corrplot(
+  R,
+  method = "color",
+  type = "upper",
+  order = "hclust",
+  col = colorRampPalette(rev(cores_divergente))(200),
+  tl.col = "black",
+  tl.cex = 0.8,
+  addCoef.col = NULL,
+  title = "Correlograma das Variáveis Químicas",
+  mar = c(0,0,1,0)
+)
+```
+
+A visualização do correlograma revela que existem correlações fortes entre algumas variáveis (por exemplo, entre Flavanoids e Total_phenols, e entre Flavanoids e OD280_OD315). Este padrão de interdependência é um indício de redundância de informação e reforça a pertinência de técnicas de redução de dimensionalidade como a PCA e a Análise Fatorial [@hair2009multivariate].
+
+
+# Análise de Componentes Principais
+
+## Proporção da Variância Explicada
+
+A Análise de Componentes Principais tem como objetivo rotacionar o sistema de coordenadas originais de modo a encontrar combinações lineares ortogonais que maximizem a variância explicada [@johnson2007applied]. Primeiramente, iremos obter a matriz de correlações R, e dela iremos extrair os autovalores e autovetores. Por fim, vamos construir os escores $Y = ZE$, onde $E$ é a matriz ortogonal cujas colunas são os autovetores.
+
+```{r}
+# matriz Z
+Z <- scale(X, center = TRUE, scale = TRUE)
+
+#  matriz de correlação
+R_mat <- cor(X)
+
+# decomposição espectral
+eig <- eigen(R_mat, symmetric = TRUE)
+autovalores <- eig$values
+autovetores <- eig$vectors
+
+rownames(autovetores) <- colnames(X)
+colnames(autovetores) <- paste0("CP", 1:ncol(X))
+
+# escores
+escores <- Z %*% autovetores
+colnames(escores) <- paste0("CP", 1:ncol(X))
+
+# proporção de variância explicada
+
+prop_var <- autovalores / sum(autovalores)
+prop_acum <- cumsum(prop_var)
+
+tabela_var <- data.frame(
+  Componente = paste0("CP", 1:length(autovalores)),
+  Autovalor = autovalores,
+  Prop_Variancia = prop_var,
+  Prop_Acumulada = prop_acum
+)
+
+kable(head(tabela_var, 5), digits = 4, 
+      caption = "Resumo dos 5 primeiros autovalores e variâncias explicadas.")
+```
+
+Podemos observar que apenas as duas primeiras componentes concentram aproximadamente 55% da variabilidade total dos dados, enquanto as três primeiras representam cerca de 67%. Esse resultado evidencia que grande parte da informação originalmente presente nas treze variáveis pode ser resumida por um número bastante reduzido de dimensões, justificando o uso da PCA como técnica de redução de dimensionalidade.
+
+## Scree Plot
+
+Vamos utilizar o Scree Plot para ilustrar o decaimento dos autovalores:
+
+```{r}
+cores_categorica <- brewer.pal(n = 8, name = "Dark2")
+cores <- cores_categorica[c(1, 3, 5)]
+
+plot(autovalores, type = "b", pch = 19, lwd = 2, col = cores_categorica[2],
+     xlab = "Componente Principal", ylab = "Autovalor",
+     main = "Scree Plot: Decaimento dos Autovalores")
+abline(h = 1, lty = 2, col = cores_categorica[8])  # Critério de Kaiser
+legend("topright", legend = "Critério de Kaiser (Autovalor = 1)",
+       lty = 2, col = cores_categorica[8], bty = "n", cex = 0.9)
+```
+
+De acordo com o Critério de Kaiser (retenção de componentes com $\lambda > 1$), bem como pela análise da curva do Scree Plot, constatamos que um reduzido número de componentes capta grande proporção da variabilidade inerente ao sistema multivariado. As três primeiras componentes principais (CP1, CP2 e CP3) representam em conjunto aproximadamente 67% da variabilidade total.
+
+## Loadings 
+
+Vamos agora realizar a análise vetorial das componentes, fundamentada na magnitude e no sinal das cargas (loadings), que correspondem aos elementos dos autovalores retidos.
+
+```{r}
+loadings_123 <- round(autovetores[, 1:3], 3)
+knitr::kable(loadings_123, caption = "Cargas (autovetores) das três primeiras componentes principais")
+```
+
+A CP1 apresenta cargas relevantes e de mesmo sinal em variáveis como Flavanoids, Total_phenols e OD280_OD315, podendo ser interpretada como um eixo geral relacionado ao teor fenólico do vinho. A CP2 contrasta principalmente Color_intensity e Alcohol com Hue, sendo associada a um eixo de intensidade de cor e estrutura. Já a CP3 (que eleva a variância explicada a 67%) geralmente destaca variáveis que não foram bem representadas nas duas primeiras, como Ash (Cinzas) e Alcalinity_ash (Alcalinidade das cinzas), configurando um eixo relacionado à composição mineral do vinho.
+
+## Projeção 3D dos Escores
+
+Para incorporar a parcela de variância explicada pela terceira componente, projetamos as amostras no espaço tridimensional formado por CP1, CP2 e CP3.
+
+```{r}
+#| fig-width: 9
+#| fig-height: 7
+#| out-width: "100%"
+
+library(plotly)
+
+cores_seguras <- c("#E69F00", "#56B4E9", "#CC79A7") 
+
+plot_ly(
+  x = escores[, 1], 
+  y = escores[, 2], 
+  z = escores[, 3], 
+  color = classe, 
+  colors = cores_seguras, 
+  type = "scatter3d", 
+  mode = "markers",
+  marker = list(
+    size = 6, 
+    opacity = 0.9,
+    line = list(width = 0.3, color = "black") 
+  )
+) %>%
+  layout(
+    title = "Projeção 3D (CP1 x CP2 x CP3)",
+    autosize = TRUE,
+    scene = list(
+      xaxis = list(title = sprintf("CP1 (%.1f%%)", prop_var[1] * 100)),
+      yaxis = list(title = sprintf("CP2 (%.1f%%)", prop_var[2] * 100)),
+      zaxis = list(title = sprintf("CP3 (%.1f%%)", prop_var[3] * 100)),
+      camera = list(eye = list(x = 1.4, y = 1.4, z = 1.1)) 
+    ),
+    
+    margin = list(l = 0, r = 0, b = 0, t = 40) 
+  )
+```
+
+
+A visualização em três dimensões mostra de forma mais clara a separação entre as três cultivares. Enquanto os dois primeiros componentes principais (CP1 e CP2) já permitiam distinguir bem os grupos com base nas características químicas dos vinhos, a inclusão do terceiro componente (CP3) melhora ainda mais essa visualização, reduzindo a sobreposição entre as classes. Esse resultado indica que as variáveis químicas utilizadas conseguem representar bem as diferenças entre as cultivares, justificando o uso das técnicas de Análise Fatorial e de Análise Discriminante (LDA e QDA), que serão apresentadas nas próximas seções.
+
+
+# Análise Fatorial
+
+Diferentemente da PCA, a Análise Fatorial parte de um modelo estatístico explícito, no qual cada variável observada é escrita como combinação linear de um número menor de fatores comuns, não observáveis, mais um termo de erro específico (unicidade) [@hair2009multivariate]. O modelo é expresso por:
+
+$$X_j = \sum_{k=1}^{m} \ell_{jk} F_k + \varepsilon_j, \qquad j = 1, \dots, p$$
+
+em que $\ell_{jk}$ são as cargas fatoriais, $F_k$ os fatores comuns e $\varepsilon_j$ a unicidade de cada variável. Utilizaremos a função `factanal`, que estima o modelo por máxima verossimilhança.
+
+## Escolha do Número de Fatores
+
+Para determinar a dimensão estrutural $m$, iteramos o ajuste do modelo de 1 a 6 fatores e avaliamos o teste de razão de verossimilhança.
+
+```{r fa_numero_fatores}
+resultados_fa <- list()
+
+for (m in 1:6) {
+  fit <- tryCatch(
+    factanal(X, factors = m, rotation = "varimax"),
+    error = function(e) NULL
+  )
+  if (!is.null(fit)) {
+    resultados_fa[[m]] <- fit
+  }
+}
+
+tabela_fa <- data.frame(
+  Fatores = seq_along(resultados_fa),
+  Estatistica_QuiQuadrado = sapply(resultados_fa, function(f) round(f$STATISTIC, 2)),
+  GL = sapply(resultados_fa, function(f) f$dof),
+  p_valor = sapply(resultados_fa, function(f) round(f$PVAL, 4))
+)
+
+knitr::kable(tabela_fa, caption = "Teste de adequação do número de fatores (H0: m fatores são suficientes)")
+
+m_escolhido <- min(which(sapply(resultados_fa, function(f) f$PVAL) > 0.05))
+fa_final <- resultados_fa[[m_escolhido]]
+pval_escolhido <- round(fa_final$PVAL, 4)
+
+cat("Número de fatores escolhido (m):", m_escolhido, "\n")
+cat("P-valor associado:", pval_escolhido, "\n")
+```
+
+O teste de razão de verossimilhança testa $H_0$: o número de fatores especificado é suficiente para explicar as correlações observadas. O teste indicou que modelos com até r m_escolhido - 1 fatores ainda não eram suficientes para reproduzir adequadamente a estrutura de correlação observada ($p < 0{,}05$). Apenas o modelo com `r m_escolhido` fatores apresentou evidência estatística compatível com um bom ajuste ($p = `r pval_escolhido`$), sendo portanto selecionado para as análises subsequentes. Embora `r m_escolhido` fatores representem uma redução relativamente modesta em relação às treze variáveis originais, essa escolha garante aderência ao modelo estatístico proposto.
+
+## Cargas Fatoriais e Comunalidades
+
+Para extrair as cargas, utilizaremos a rotação ortogonal Varimax, que busca maximizar a variância das cargas quadradas em cada fator, simplificando a interpretação.
+
+```{r}
+cargas <- round(unclass(fa_final$loadings), 3)
+knitr::kable(cargas, caption = "Cargas fatoriais após rotação Varimax")
+
+# comunalidades
+comunalidades <- round(1 - fa_final$uniquenesses, 3)
+knitr::kable(
+  data.frame(Variavel = names(comunalidades), Comunalidade = comunalidades),
+  caption = "Comunalidades: proporção da variância de cada variável explicada pelos fatores comuns"
+)
+```
+
+A análise das cargas fatoriais após a rotação Varimax permite identificar grupos de variáveis que representam diferentes características dos vinhos. O primeiro fator está relacionado aos compostos fenólicos, reunindo variáveis como flavonoides, fenóis totais, absorbância e proantocianidinas. O segundo fator está associado principalmente ao teor alcoólico e à prolina, refletindo características ligadas à composição da uva. O terceiro fator representa a composição mineral, sendo definido principalmente pelas cinzas e, em menor intensidade, pela alcalinidade. O quarto fator está ligado à aparência do vinho, relacionando a intensidade da cor e a tonalidade. Já o quinto e o sexto fatores representam, respectivamente, a acidez málica e a concentração de magnésio.
+
+As comunalidades mostram quanto da variação de cada variável é explicada pelos seis fatores obtidos. De modo geral, os resultados indicam um bom ajuste do modelo, já que a maior parte das variáveis foi bem representada. Variáveis como cinzas, magnésio e intensidade de cor apresentaram valores muito altos, indicando que quase toda a sua variabilidade foi explicada pelos fatores. Por outro lado, os fenóis não flavonoides e as proantocianidinas tiveram as menores comunalidades, sugerindo que parte importante de sua variação não é explicada pelo modelo fatorial.
+
+# Análise Discriminante 
+
+Nesta etapa, aplicaremos as técnicas de classificação. A proposta é simular uma situação semelhante à de uma vinícola ou de um órgão de fiscalização, em que uma amostra de vinho é recebida sem qualquer informação sobre sua origem. A partir apenas das características químicas da amostra, o objetivo é identificar corretamente a qual cultivar ela pertence.
+
+Para isso, serão utilizadas duas técnicas de classificação supervisionada: a Análise Discriminante Linear (LDA) e a Análise Discriminante Quadrática (QDA) [@johnson2007applied]. Ambas constroem regras de classificação com base nas informações das amostras já conhecidas. A principal diferença entre elas é que a LDA considera que as cultivares possuem a mesma estrutura de variabilidade, enquanto a QDA permite que cada grupo apresente uma estrutura de variabilidade própria.
+
+## Ajuste dos Modelos e Coeficientes
+
+Utilizaremos o pacote `MASS` para estimar as funções discriminantes.
+
+```{r}
+library(MASS)
+
+modelo_lda <- lda(Classe ~ ., data = dados)
+modelo_qda <- qda(Classe ~ ., data = dados)
+
+coef_lda <- round(modelo_lda$scaling, 3)
+knitr::kable(coef_lda, caption = "Coeficientes das funções discriminantes lineares (LDA)")
+```
+
+A análise dos coeficientes das funções discriminantes mostra quais variáveis químicas são mais importantes para diferenciar as cultivares. Na primeira função discriminante (LD1), as variáveis com maior influência são **Flavanoids**, **Nonflavanoid_phenols**, **OD280_OD315** e **Hue**, indicando que as características relacionadas aos compostos fenólicos e às propriedades de cor são as que mais contribuem para a separação dos grupos.
+
+Na segunda função discriminante (LD2), a variável **Ash** apresenta a maior contribuição, seguida novamente por **Nonflavanoid_phenols** e **Hue**. Isso indica que o teor de cinzas, juntamente com algumas características químicas já observadas na primeira função, ajuda a diferenciar as cultivares que ainda apresentam alguma proximidade após a separação realizada pela LD1.
+
+
+## Visualização no Espaço Discriminante (LDA)
+
+Como a LDA projeta os dados em um novo espaço de dimensões reduzidas ($K-1$ dimensões, sendo $K$ o número de classes), podemos visualizar a separação máxima obtida.
+
+```{r}
+# scores
+pred_lda_treino <- predict(modelo_lda)
+df_lda <- data.frame(pred_lda_treino$x, Classe = classe)
+
+ggplot(df_lda, aes(x = LD1, y = LD2, color = Classe)) +
+  geom_point(size = 3, alpha = 0.85) +
+  scale_color_manual(values = cores_seguras) + 
+  labs(
+    title = "Projeção das Amostras no Espaço Discriminante (LDA)",
+    subtitle = "Maximização da separação entre classes via LD1 e LD2",
+    x = "LD1",
+    y = "LD2"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+A separação entre as três cultivares no espaço discriminante é ainda mais nítida e bem definida do que a observada na PCA. Isso é o comportamento teoricamente esperado, uma vez que a LDA constrói os eixos ortogonais com o objetivo específico de maximizar a variância entre as classes em relação à variância dentro das classes, utilizando os rótulos conhecidos no processo de otimização.
+
+## Avaliação da Taxa de Erro
+
+Para estimar o desempenho do sistema de controle de qualidade em amostras inéditas (que o modelo não viu durante o treinamento), aplicaremos a validação cruzada leave-one-out. Cada observação é iterativamente removida, o modelo é reajustado com as 177 restantes e a amostra omitida é então classificada. A proporção de classificações incorretas fornece a taxa de erro aparente estimada por LOOCV.
+
+```{r}
+# validação cruzada
+modelo_lda_cv <- lda(Classe ~ ., data = dados, CV = TRUE)
+modelo_qda_cv <- qda(Classe ~ ., data = dados, CV = TRUE)
+
+# matrizes de confusão
+matriz_confusao_lda <- table(Observado = classe, Predito = modelo_lda_cv$class)
+matriz_confusao_qda <- table(Observado = classe, Predito = modelo_qda_cv$class)
+
+# cálculo das métricas
+erro_lda <- 1 - sum(diag(matriz_confusao_lda)) / sum(matriz_confusao_lda)
+erro_qda <- 1 - sum(diag(matriz_confusao_qda)) / sum(matriz_confusao_qda)
+
+knitr::kable(
+  data.frame(
+    Modelo = c("LDA", "QDA"),
+    Erro_LOOCV = paste0(round(c(erro_lda, erro_qda) * 100, 2), "%"),
+    Acuracia = paste0(round(c(1 - erro_lda, 1 - erro_qda) * 100, 2), "%")
+  ),
+  caption = "Desempenho de classificação estimado por validação cruzada (LOOCV)"
+)
+```
+
+Ambos os modelos apresentam taxas de erro extremamente baixas, o que indica que a composição química é altamente informativa para distinguir as três cultivares. Diante de desempenhos semelhantes, geralmente prefere-se a LDA por ser um modelo mais parcimonioso, estimando uma única matriz de covariância comum (ao invés de uma por classe), o que confere maior estabilidade analítica em amostras de tamanho moderado.
+
+## Simulação de Novas Amostras
+
+Para ilustrar a aplicação prática de certificação, vamos simular um lote de seis novas amostras de vinho. Elas foram geradas artificialmente a partir da distribuição normal multivariada de cada cultivar, utilizando o vetor de médias e a matriz de covariância comum estimada (S pooled).
+
+```{r}
+set.seed(666)
+
+# matriz de covariância "pooled"
+n_classes <- table(classe)
+S_pooled <- Reduce(`+`, lapply(levels(classe), function(cl) {
+  Xc <- X[classe == cl, ]
+  (n_classes[cl] - 1) * cov(Xc)
+})) / (nrow(X) - length(levels(classe)))
+
+
+gerar_amostra <- function(cl, n = 2) {
+  mu <- colMeans(X[classe == cl, ])
+  MASS::mvrnorm(n, mu = mu, Sigma = S_pooled)
+}
+
+
+novas_amostras <- as.data.frame(do.call(rbind, lapply(levels(classe), gerar_amostra)))
+colnames(novas_amostras) <- colnames(X)
+origem_real <- rep(levels(classe), each = 2)
+
+
+pred_novas_lda <- predict(modelo_lda, newdata = novas_amostras)
+
+tabela_novas <- data.frame(
+  Amostra = paste0("Lote Simulado ", 1:nrow(novas_amostras)),
+  Origem_Real = origem_real,
+  Classificacao_LDA = pred_novas_lda$class,
+  Prob_Posteriori_Max = apply(pred_novas_lda$posterior, 1, max)
+)
+
+knitr::kable(tabela_novas, digits = 4, 
+             caption = "Classificação e certificação das novas amostras simuladas (LDA)")
+```
+
+Os resultados da simulação mostram que o modelo apresentou um excelente desempenho, classificando corretamente as seis amostras do lote desconhecido em suas respectivas cultivares. Além da classificação em si, a Análise Discriminante também fornece a probabilidade de cada amostra pertencer a cada grupo, permitindo avaliar o nível de confiança de cada previsão.
+
+Cinco das seis amostras foram classificadas com probabilidades superiores a 99%, indicando alta confiança na decisão do modelo. Já a amostra **Lote Simulado 2** foi classificada na Cultivar 1 com uma probabilidade de 77,18%. Embora essa classificação esteja correta, o valor menor indica que essa amostra merece maior atenção. Em uma situação real, ela poderia ser encaminhada para uma nova análise antes da emissão da certificação, garantindo mais segurança no processo de controle de qualidade.
+
+# Referências

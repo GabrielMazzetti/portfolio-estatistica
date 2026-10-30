@@ -14,6 +14,7 @@ O projeto está em constante construção/atualização, portanto, não hesite e
 | `style.css` | Estilos do site |
 | `assets/` | Imagens usadas no site |
 | `projetos/computacional/` | Cases dos aplicativos Gir e Girolando (Shiny) |
+| `projetos/multivariada/projeto_wine/` | Relatório e case de análise multivariada do conjunto Wine (UCI) |
 | `projetos/estatistica-descritiva/` | Relatório de Employee Attrition |
 | `projetos/inferencia/` e `projetos/modelagem/` | Pastas reservadas para projetos futuros |
 
