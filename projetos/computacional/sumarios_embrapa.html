@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Case de portfólio: desenvolvimento das aplicações interativas em R Shiny (Right Sire) para exploração dos Sumários de Touros 2026 do Gir Leiteiro e do Girolando na Embrapa." />
+    <title>Exploração interativa dos Sumários de Touros — Embrapa | Case</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+    <link rel="stylesheet" href="../../style.css?v=5" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+<nav aria-label="Navegação principal">
+    <ul>
+        <li><a href="../../index.html?v=5">Início</a></li>
+        <li><a href="../../projetos.html?v=5" class="ativo">Projetos</a></li>
+        <li><a href="../../projetos-pessoais.html?v=5">Projetos pessoais</a></li>
+        <li><a href="../../index.html?v=5#sobre">Sobre</a></li>
+        <li><a href="../../index.html?v=5#contato">Contato</a></li>
+
+        <li class="divisor" aria-hidden="true">|</li>
+
+        <li>
+            <a href="https://github.com/GabrielMazzetti" target="_blank" rel="noopener">
+                <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
+            </a>
+        </li>
+        <li>
+            <a href="https://linkedin.com/in/gabriel-mazzetti-066a4125b" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+                <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li>
+            <a href="mailto:gabrielmazzetti84@gmail.com?subject=Contato%20via%20Portf%C3%B3lio" aria-label="Enviar e-mail" title="Enviar e-mail">
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<main class="page case-page">
+    <header class="topline">
+        <a href="../../projetos.html?v=5">&larr; Voltar aos projetos</a>
+        <span>Iniciação científica · Embrapa · 2026</span>
+    </header>
+
+    <section class="case-hero">
+        <p class="eyebrow">Estudo de caso · Melhoramento genético bovino</p>
+        <h1>Exploração interativa<br>dos Sumários de Touros</h1>
+        <div class="hero-bottom">
+            <p>
+                Desenvolvimento integral da programação de duas aplicações web em R Shiny (<em>Right Sire</em>) para transformar os Sumários de Touros 2026 do Gir Leiteiro e do Girolando em ambientes interativos de análise genética — sem abrir mão da responsabilidade estatística.
+            </p>
+            <div class="hero-side">
+                <span class="hero-index">CASE 01 / EMBRAPA 2026</span>
+                <div class="hero-side-buttons">
+                    <a class="btn-claro" href="https://auax2h-gabriel-affonso.shinyapps.io/app_rigth_sire_b5/" target="_blank" rel="noopener">App Gir Leiteiro ↗</a>
+                    <a class="btn-contorno" href="https://auax2h-gabriel-affonso.shinyapps.io/app_girolando/" target="_blank" rel="noopener">App Girolando ↗</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="intro-grid">
+        <article class="panel paper">
+            <p class="section-label">01 / Contexto e objetivo</p>
+            <h2>Dos sumários em PDF à consulta dinâmica</h2>
+            <p>
+                No contexto de iniciação científica vinculada ao melhoramento genético de bovinos leiteiros na Embrapa, implementei duas aplicações interativas voltadas aos Sumários 2026 do <strong>Gir Leiteiro</strong> (PNMGL — ABCZ / ABCGIL / Embrapa) e do <strong>Girolando</strong> (PMGG — ABCG / Embrapa).
+            </p>
+            <p>
+                O projeto foi idealizado e conduzido pelo orientador, responsável pela concepção geral das análises e pela sugestão de ferramentas de domínio ao longo do percurso. Fiquei responsável por toda a programação das aplicações, estruturando a interface, a reatividade e as visualizações interativas.
+            </p>
+        </article>
+        <article class="panel blue">
+            <p class="section-label">A proposta central</p>
+            <p class="big-statement">
+                Não bastava transpor tabelas para o navegador. O objetivo era dar autonomia a criadores e pesquisadores para cruzar critérios genéticos conforme o perfil de cada rebanho.
+            </p>
+            <div style="margin-top: 24px;">
+                <span class="tag">R · Shiny · bslib</span>
+                <span class="tag">Bootstrap 5 · Plotly</span>
+                <span class="tag">679 touros Gir</span>
+                <span class="tag">527 touros Girolando</span>
+            </div>
+        </article>
+    </section>
+
+    <section class="panel paper">
+        <p class="section-label">02 / Problema, arquitetura e tecnologias</p>
+        <h2>Por que um documento estático restringe a seleção genética</h2>
+        <p>
+            Os sumários oficiais reúnem dezenas de avaliações genéticas (PTAs produtivas, reprodutivas, compostos morfológicos, genótipos de proteínas do leite e parentesco), mas o formato estático em PDF limita o leitor às ordenações fixas já impressas na publicação. Quando o criador precisa combinar simultaneamente produção de leite, conformação funcional, genótipo A2A2 e controle de consanguinidade, a triagem manual torna-se lenta e sujeita a perdas.
+        </p>
+        <p>
+            Para resolver esse problema, ambas as aplicações foram construídas sobre uma arquitetura modular compartilhada em <strong>R</strong>, utilizando <strong>Shiny</strong>, <strong>bslib</strong> com <strong>Bootstrap 5</strong> para organização responsiva de painéis e cartões, e <strong>Plotly</strong> para seleção gráfica direta (<em>zoom</em>, caixas de corte e adição em lote).
+        </p>
+        <div class="stats">
+            <div class="stat">
+                <strong>Rankings e filtros</strong>
+                <span>Ordenação dinâmica com janela deslizante (Top N), busca por reprodutor e filtros por marcadores genéticos (β-caseína e κ-caseína).</span>
+            </div>
+            <div class="stat">
+                <strong>Níveis independentes e STA</strong>
+                <span>Gráficos de dispersão interativos com linhas de referência nos eixos X e Y e réguas de seleção para características lineares na escala padronizada STA.</span>
+            </div>
+            <div class="stat">
+                <strong>Tabela e carrinho persistente</strong>
+                <span>Consulta customizável da tabela completa (incluindo genealogia) integrada a um carrinho transversal para consolidar e revisar os touros selecionados.</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-grid">
+        <article class="panel blue">
+            <p class="number">03 / Minha contribuição</p>
+            <h2>Implementação integral em R Shiny</h2>
+            <p>
+                Programei integralmente os dois aplicativos. Parte dos cálculos iniciais existia em um script preliminar em R; a partir dele, estruturei toda a lógica reativa do servidor, a construção dos componentes visuais em <code>bslib</code>, a interatividade dos gráficos em <code>Plotly</code> e o fluxo de seleção entre abas.
+            </p>
+            <p>
+                Enquanto o orientador direcionou a concepção zootécnica e propôs aperfeiçoamentos funcionais, minha responsabilidade técnica foi traduzir cada requisito em ferramentas estáveis, claras e reprodutíveis para o usuário final.
+            </p>
+        </article>
+        <article class="panel paper">
+            <p class="number">04 / Evolução do projeto</p>
+            <h2>Revisão contínua de escopo</h2>
+            <p>
+                As aplicações não foram uma simples transcrição do script inicial. Ao longo do desenvolvimento, testamos novas formas de cruzamento multivariado, adaptamos a interface às especificidades de cada programa de melhoramento (PNMGL e PMGG) e reavaliamos criticamente quais saídas estatísticas deveriam permanecer visíveis.
+            </p>
+            <p>
+                Essa evolução uniu decisões de engenharia de interface — como sincronizar a seleção gráfica com o carrinho de compras — a decisões metodológicas sobre a interpretação das estimativas genéticas.
+            </p>
+        </article>
+    </section>
+
+    <section id="gir" class="evidence-block" aria-labelledby="titulo-app-gir">
+        <p class="section-label">05.A / Aplicação 1 · Sumário Brasileiro de Touros Gir 2026 (PNMGL)</p>
+        <div class="section-head">
+            <h2 id="titulo-app-gir">Aplicativo Gir Leiteiro</h2>
+            <a href="https://auax2h-gabriel-affonso.shinyapps.io/app_rigth_sire_b5/" target="_blank" rel="noopener" class="btn-projeto">Abrir App Gir Leiteiro ↗</a>
+        </div>
+        <p>
+            Voltado aos <strong>679 touros</strong> avaliados no Sumário Gir Leiteiro 2026 (ABCZ / ABCGIL / Embrapa), o aplicativo incorpora ferramentas desenhadas especificamente para os critérios de seleção e estrutura populacional da raça:
+        </p>
+        <ul class="feature-list">
+            <li><strong>Filtros oficiais no Ranking Geral:</strong> recorte imediato pelo <strong>Selo MAPA (IPGL)</strong> (<em>Ouro</em>, <em>Prata</em>, <em>Bronze</em> e <em>Sem selo</em>), combinado aos genótipos de β-caseína (<code>A2A2</code>, <code>A1A2</code>, <code>A1A1</code>) e κ-caseína (<code>BB</code>, <code>AB</code>, <code>AA</code>).</li>
+            <li><strong>Crie seu Próprio Índice:</strong> módulo que permite ao usuário atribuir pesos de 0 a 100 para PTAs de Leite, Idade ao 1º Parto, Gordura, Proteína e Parentesco Genômico (ou carregar os pesos oficiais do IPGL), propagando o índice salvo para as caixas de informação de todo o aplicativo.</li>
+            <li><strong>Matriz de Sustentabilidade Genética:</strong> visualização estratégica de <em>Potencial Produtivo vs. Percentil de Parentesco</em> para destacar <em>Melhoradores de Sangue Aberto</em> (alto desempenho com menor endogamia), contando também com opção de <strong>paleta acessível para daltônicos</strong>.</li>
+        </ul>
+
+        <div class="evidence-grid">
+            <figure class="evidence-figure">
+                <img src="../../assets/projetos/embrapa_gir_ranking.png" alt="Tela de Ranking Geral do aplicativo Gir Leiteiro exibindo janela deslizante para 679 touros, filtros de Selo MAPA e caseínas, gráfico de pontos por PTA Produção de Leite e painel Adicionar ao Carrinho" width="1400" height="755" loading="lazy" />
+                <figcaption>Ranking Geral dinâmico dos 679 touros Gir Leiteiro com filtros por Selo MAPA (IPGL), β-caseína e κ-caseína integrados à seleção em lote para o carrinho.</figcaption>
+            </figure>
+            <figure class="evidence-figure">
+                <img src="../../assets/projetos/embrapa_gir_sustentabilidade.png" alt="Matriz de Sustentabilidade Genética do aplicativo Gir Leiteiro relacionando PTA Produção de Leite e Percentil de Parentesco, com quadrantes interpretativos e opção de paleta para daltônicos" width="1400" height="755" loading="lazy" />
+                <figcaption>Matriz de Sustentabilidade Genética (Potencial vs. Consanguinidade), auxiliando a identificação de reprodutores de sangue aberto e o controle da endogamia.</figcaption>
+            </figure>
+        </div>
+
+        <figure class="evidence-figure" style="margin-top: 20px;">
+            <img src="../../assets/projetos/embrapa_gir_indice.png" alt="Aba Crie seu Próprio Índice no aplicativo Gir Leiteiro mostrando controles deslizantes de pesos para Leite, Idade ao 1º Parto, Gordura, Proteína e Parentesco Genômico" width="1400" height="755" loading="lazy" />
+            <figcaption>Módulo Crie seu Próprio Índice: ponderação customizada de PTAs produtivas, reprodutivas e de parentesco genômico conforme o objetivo do selecionador.</figcaption>
+        </figure>
+    </section>
+
+    <section id="girolando" class="evidence-block" aria-labelledby="titulo-app-girolando">
+        <p class="section-label">05.B / Aplicação 2 · Sumário de Touros Girolando 2026 (PMGG)</p>
+        <div class="section-head">
+            <h2 id="titulo-app-girolando">Aplicativo Girolando</h2>
+            <a href="https://auax2h-gabriel-affonso.shinyapps.io/app_girolando/" target="_blank" rel="noopener" class="btn-projeto">Abrir App Girolando ↗</a>
+        </div>
+        <p>
+            Desenvolvido para explorar os <strong>527 touros</strong> do Programa de Melhoramento Genético do Girolando (PMGG 2026 — ABCG / Embrapa), o aplicativo adapta a arquitetura <em>Right Sire</em> à diversidade de graus de sangue e aos múltiplos índices compostos da raça:
+        </p>
+        <ul class="feature-list">
+            <li><strong>Composição Racial e ordenamento pelo IPG:</strong> classificação padrão pelo Índice de Produção Girolando (<code>IPG</code>), com filtragem e codificação visual por grau de sangue (<code>3/4</code>, <code>5/8</code> e <code>PS</code>), além de marcadores para leite A2 e aptidão queijeira.</li>
+            <li><strong>Índices de Desempenho em Gráfico de Radar:</strong> comparação simultânea de até <strong>4 touros</strong> sobrepostos na escala padronizada STA (-3 a +3) contemplando os índices compostos oficiais (<code>ILG</code>, <code>IPPLG</code>, <code>IETG</code>, <code>IFPG</code>, <code>IRG</code> e <code>IQLG</code>).</li>
+            <li><strong>Matriz de Adaptação Tropical:</strong> cruzamento entre características produtivas e o Índice de Eficiência Tropical Girolando (<code>IETG</code> — tolerância ao calor e longevidade a pasto), diferenciando reprodutores de <em>Elite Tropical</em>, <em>Produtivos Sensíveis</em> e <em>Rústicos</em>.</li>
+            <li><strong>Avaliação Linear SALG e painel genômico completo:</strong> exploração por réguas STA, compostos morfológicos (<code>CSLG</code>, <code>CSMG</code>, <code>CFLG</code>, <code>CGG</code>), marcador <code>DGAT1</code> e triagem de anomalias genéticas (<code>BLAD</code>, <code>DUMPS</code>, <code>CVM</code>, <code>Citrulinemia</code>, <code>BS</code> e <code>FXID</code>).</li>
+        </ul>
+
+        <div class="evidence-grid">
+            <figure class="evidence-figure">
+                <img src="../../assets/projetos/embrapa_girolando_ranking.png" alt="Tela de Ranking Geral Dinâmico do aplicativo Girolando exibindo 527 touros ordenados pelo IPG e coloridos por Composição Racial (3/4, 5/8 e PS)" width="1400" height="755" loading="lazy" />
+                <figcaption>Ranking Geral Dinâmico do PMGG 2026 ordenado pelo IPG, com distinção cromática por composição racial (3/4, 5/8 e PS) e filtros de caseínas.</figcaption>
+            </figure>
+            <figure class="evidence-figure">
+                <img src="../../assets/projetos/embrapa_girolando_adaptacao.png" alt="Matriz de Adaptação Tropical do aplicativo Girolando cruzando PTA Leite no eixo vertical e Eficiência Tropical (IETG) no eixo horizontal, separando os touros em quadrantes estratégicos" width="1400" height="755" loading="lazy" />
+                <figcaption>Matriz de Adaptação Tropical (Potencial Produtivo vs. IETG), evidenciando o equilíbrio entre volume de produção, tolerância ao calor e longevidade a pasto.</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <section class="decision">
+        <div class="decision-mark">
+            <span class="section-label">06 / Decisão técnica</span>
+            <span class="symbol">&times;</span>
+            <p>Nem toda ferramenta implementada deve permanecer</p>
+        </div>
+        <article class="panel paper">
+            <p class="section-label">Responsabilidade estatística</p>
+            <h2>Remover uma funcionalidade pouco informativa também é parte da análise</h2>
+            <p>
+                Durante o desenvolvimento, uma das ferramentas previstas inicialmente foi descartada porque os intervalos de confiança associados às estimativas eram excessivamente amplos e pouco informativos para orientar a decisão prática do selecionador.
+            </p>
+            <p>
+                Em vez de manter o recurso apenas por já estar codificado, optamos por retirá-lo da interface final. Uma aplicação estatística deve ser avaliada pela qualidade e utilidade da incerteza que comunica, não apenas pela quantidade de cálculos que exibe.
+            </p>
+            <div class="pullquote">
+                O papel da ferramenta interativa é qualificar a decisão do usuário — evitando que estimativas com baixa precisão induzam interpretações equivocadas.
+            </div>
+        </article>
+    </section>
+
+    <section class="result-band">
+        <div>
+            <p class="section-label">07 / Resultados</p>
+            <h2>Duas aplicações publicadas</h2>
+        </div>
+        <div>
+            <p>
+                Os aplicativos do Gir Leiteiro e do Girolando estão concluídos e publicados em nuvem na plataforma <code>shinyapps.io</code>, reunindo recursos interativos para consulta dos Sumários de Touros 2026.
+            </p>
+            <div class="botoes" style="margin: 18px 0;">
+                <a class="btn-claro" href="https://auax2h-gabriel-affonso.shinyapps.io/app_rigth_sire_b5/" target="_blank" rel="noopener">Abrir App Gir ↗</a>
+                <a class="btn-contorno" href="https://auax2h-gabriel-affonso.shinyapps.io/app_girolando/" target="_blank" rel="noopener">Abrir App Girolando ↗</a>
+            </div>
+            <div class="caveat">
+                <strong>Limites e escopo atual:</strong> o resultado demonstrável consiste nas duas aplicações em funcionamento; ainda não há métricas de telemetria pós-publicação que permitam quantificar seu efeito no processo decisório dos criadores. Além disso, conforme sinalizado no próprio aviso inicial das aplicações, esta primeira versão foi projetada prioritariamente para telas de computador e notebook.
+            </div>
+        </div>
+    </section>
+
+    <section class="closing">
+        <article class="panel paper">
+            <p class="section-label">08 / Aprendizados</p>
+            <h2>O que este ciclo ensinou</h2>
+            <p>
+                Em novos projetos em R Shiny, adotaria desde o primeiro protótipo os componentes modernos do ecossistema <code>bslib</code> e Bootstrap 5, o que reduz retrabalho de layout e facilita a padronização visual entre múltiplas aplicações.
+            </p>
+            <p>
+                A construção conjunta dos dois sistemas também evidenciou o ganho de estruturar módulos reutilizáveis quando diferentes bases compartilham o mesmo fluxo analítico, mas exigem regras específicas de negócio.
+            </p>
+        </article>
+        <article class="panel blue">
+            <p class="section-label">Síntese técnica</p>
+            <h2>Competências demonstradas</h2>
+            <ul class="feature-list">
+                <li>Programação integral de aplicações web reativas em R, Shiny, <code>bslib</code> e Bootstrap 5.</li>
+                <li>Construção de visualizações interativas em Plotly com seleção direta e filtros cruzados.</li>
+                <li>Adaptação de uma mesma arquitetura analítica às particularidades genéticas de duas raças.</li>
+                <li>Critério estatístico para avaliar precisão de estimativas antes de expô-las ao usuário.</li>
+            </ul>
+        </article>
+    </section>
+</main>
+
+<footer>
+    <span>© 2026 — Gabriel Sanábio Mazzetti Affonso</span>
+    <span>Iniciação científica · Embrapa · Sumários de Touros 2026</span>
+</footer>
+
+</body>
+</html>
+

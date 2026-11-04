@@ -1,41 +1,43 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfólio — Gabriel Mazzetti Affonso</title>
-    <meta name="description" content="Portfólio de Gabriel Sanábio Mazzetti Affonso, estatístico em formação pela UFJF: análise de dados, inferência, modelagem e aplicações em R e Python." />
+    <title>Gabriel Mazzetti — Portfólio de Estatística</title>
+    <meta name="description" content="Portfólio de Gabriel Mazzetti, graduando em Estatística na UFJF: projetos em inferência, modelagem, análise multivariada, aplicações Shiny e materiais técnicos em R e Python." />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Gabriel Mazzetti Affonso — Portfólio de Estatística" />
-    <meta property="og:description" content="Estatístico em formação (UFJF). Projetos de análise de dados, modelagem e aplicações interativas." />
+    <meta property="og:title" content="Gabriel Mazzetti — Portfólio de Estatística" />
+    <meta property="og:description" content="Graduando em Estatística (UFJF). Projetos em métodos estatísticos, programação e análise de dados em R e Python." />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <link rel="stylesheet" href="style.css?v=3" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=5" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
 <body>
 
-<nav>
+<nav aria-label="Navegação principal">
     <ul>
-        <li><a href="index.html?v=4" class="ativo">Home</a></li>
-        <li><a href="projetos.html?v=4">Meus Projetos</a></li>
-        <li><a href="sites.html?v=4">Sites Paralelos</a></li>
+        <li><a href="index.html?v=5" class="ativo">Início</a></li>
+        <li><a href="projetos.html?v=5">Projetos</a></li>
+        <li><a href="projetos-pessoais.html?v=5">Projetos pessoais</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
 
-        <li class="divisor">|</li>
+        <li class="divisor" aria-hidden="true">|</li>
 
         <li>
-            <a href="https://github.com/GabrielMazzetti" target="_blank" rel="noopener" title="GitHub">
-                <i class="fa-brands fa-github"></i>
+            <a href="https://github.com/GabrielMazzetti" target="_blank" rel="noopener">
+                <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
             </a>
         </li>
         <li>
-            <a href="https://linkedin.com/in/gabriel-mazzetti-066a4125b" target="_blank" rel="noopener" title="LinkedIn">
-                <i class="fa-brands fa-linkedin"></i>
+            <a href="https://linkedin.com/in/gabriel-mazzetti-066a4125b" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+                <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
             </a>
         </li>
         <li>
-            <a href="mailto:gabrielmazzetti84@gmail.com?subject=Contato via Portfólio&body=Olá, Gabriel! Vi seu portfólio e gostaria de conversar." title="Enviar Email">
-                <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:gabrielmazzetti84@gmail.com?subject=Contato%20via%20Portf%C3%B3lio" aria-label="Enviar e-mail" title="Enviar e-mail">
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
             </a>
         </li>
     </ul>
@@ -44,83 +46,222 @@
 <main class="page">
 
     <header class="hero">
-        <img src="assets/foto.jpg" alt="Foto de Gabriel Mazzetti" class="profile-img" />
-        <div>
+        <img src="assets/foto.jpg" alt="Foto de Gabriel Mazzetti" class="profile-img" width="168" height="168" />
+        <div class="hero-content">
             <p class="eyebrow">Portfólio</p>
-            <h1>Gabriel Sanábio<br>Mazzetti Affonso</h1>
-            <p class="lead">Estatístico em formação • UFJF</p>
+            <h1>Gabriel Mazzetti</h1>
+            <p class="hero-id">Graduando em Estatística na Universidade Federal de Juiz de Fora (UFJF).</p>
+            <p class="lead">
+                Desenvolvo projetos que conectam métodos estatísticos, programação e análise de dados. Tenho experiência em pesquisa, desenvolvimento de aplicações interativas e produção de materiais técnicos, utilizando principalmente R e Python.
+            </p>
+            <div class="hero-interests" aria-label="Áreas de interesse">
+                <span>Inferência estatística</span>
+                <span>Modelagem estatística</span>
+                <span>Computação estatística</span>
+            </div>
+            <div class="hero-actions">
+                <a href="#projetos-destaque" class="btn-claro">Explorar projetos</a>
+                <a href="#contato" class="btn-contorno">Entrar em contato</a>
+            </div>
         </div>
     </header>
 
-    <section id="sobre" class="panel paper">
-        <p class="section-label">01 / Sobre mim</p>
-        <h2 class="titulo">Estatística aplicada a problemas reais</h2>
+    <section id="projetos-destaque" class="featured-section" aria-labelledby="titulo-destaque">
+        <div class="featured-header">
+            <p class="section-label">01 / Projetos em destaque</p>
+            <div class="section-head">
+                <h2 id="titulo-destaque" class="titulo">Trabalhos selecionados</h2>
+                <a href="projetos.html?v=5" class="link-github">Ver todos os projetos &rarr;</a>
+            </div>
+        </div>
+
+        <div class="featured-grid">
+
+            <article class="featured-card destaque-principal">
+                <a class="card-media" href="projetos/computacional/sumarios_embrapa.html?v=5">
+                    <img src="assets/projetos/embrapa_gir_ranking.png" alt="Captura de tela do aplicativo interativo Right Sire Gir da Embrapa exibindo filtros de selo MAPA e caseínas, ranking dinâmico de touros por PTA Produção de Leite e seleção para o carrinho" width="1400" height="755" />
+                </a>
+                <div class="card-body">
+                    <span class="card-kicker">Destaque principal · Iniciação científica Embrapa</span>
+                    <h3>Aplicações interativas para os Sumários de Touros da Embrapa</h3>
+                    <p>
+                        Desenvolvimento de aplicações interativas para exploração dos dados dos Sumários de Touros 2026 do Gir Leiteiro e do Girolando, no contexto de iniciação científica na Embrapa. Os aplicativos permitem explorar avaliações genéticas, aplicar filtros, construir rankings e comparar características dos reprodutores.
+                    </p>
+                    <div class="projeto-tags">
+                        <span>R</span>
+                        <span>Shiny</span>
+                        <span>bslib</span>
+                        <span>Bootstrap 5</span>
+                        <span>Plotly</span>
+                    </div>
+                    <div class="botoes">
+                        <a href="projetos/computacional/sumarios_embrapa.html?v=5" class="btn-projeto">Conhecer projeto</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="featured-card">
+                <a class="card-media" href="projetos/multivariada/projeto_wine/case_wine.html?v=5">
+                    <img src="assets/projetos/wine_lda.png" alt="Projeção das 178 amostras de vinhos no espaço discriminante linear (LD1 e LD2), separando nitidamente as três cultivares analisadas" width="1344" height="960" loading="lazy" />
+                </a>
+                <div class="card-body">
+                    <span class="card-kicker">Estudo aplicado · UFJF</span>
+                    <h3>Análise multivariada: classificação de vinhos</h3>
+                    <p>
+                        Estudo aplicado de análise multivariada utilizando características físico-químicas de vinhos para investigar padrões e avaliar a classificação de amostras segundo sua procedência. O projeto envolve Análise de Componentes Principais (PCA), Análise Fatorial, Análise Discriminante Linear (LDA) e Quadrática (QDA).
+                    </p>
+                    <div class="projeto-tags">
+                        <span>R</span>
+                        <span>Análise multivariada</span>
+                        <span>PCA</span>
+                        <span>Análise Fatorial</span>
+                        <span>LDA e QDA</span>
+                    </div>
+                    <div class="botoes">
+                        <a href="projetos/multivariada/projeto_wine/case_wine.html?v=5" class="btn-projeto">Conhecer projeto</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="featured-card">
+                <a class="card-media" href="projetos/computacional/livro_python.html?v=5">
+                    <img src="assets/projetos/python_book_codigo.png" alt="Capítulo de computação numérica do livro digital Python para estatísticos em Quarto, mostrando o sumário lateral, código em Python e simulação do Teorema Central do Limite" width="1400" height="755" loading="lazy" />
+                </a>
+                <div class="card-body">
+                    <span class="card-kicker">Iniciação científica · UFJF</span>
+                    <h3>Python para estatísticos: livro digital</h3>
+                    <p>
+                        Produção de material técnico e didático voltado ao aprendizado de Python aplicado à Estatística, desenvolvido no contexto de iniciação científica na UFJF. O material apresenta conceitos e ferramentas computacionais por meio de exemplos práticos, abordando manipulação de dados, computação numérica, web scraping e outras aplicações.
+                    </p>
+                    <div class="projeto-tags">
+                        <span>Python</span>
+                        <span>pandas</span>
+                        <span>NumPy</span>
+                        <span>Quarto</span>
+                    </div>
+                    <div class="botoes">
+                        <a href="projetos/computacional/livro_python.html?v=5" class="btn-projeto">Conhecer projeto</a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <section id="sobre" class="panel paper" aria-labelledby="titulo-sobre">
+        <p class="section-label">02 / Sobre mim</p>
+        <h2 id="titulo-sobre" class="titulo">Trajetória e interesses</h2>
         <p>
-            Atuo em projetos de análise de dados, modelagem, simulação e inferência, sempre com
-            foco em aplicações práticas e em cenários reais. Meu interesse se estende à ciência de
-            dados e à visualização de dados.
+            Sou graduando em Estatística pela Universidade Federal de Juiz de Fora (UFJF), com interesse em inferência, modelagem estatística e computação aplicada.
         </p>
         <p>
-            Me destaco pela capacidade de explicar estatística de forma clara, estruturar projetos
-            reprodutíveis e aplicar métodos com rigor, tanto no contexto acadêmico quanto profissional.
+            Ao longo da graduação, tenho desenvolvido projetos que envolvem análise de dados, implementação de métodos estatísticos e construção de ferramentas computacionais. Minhas experiências em iniciação científica incluem o desenvolvimento de aplicações interativas na Embrapa e a produção de materiais técnicos voltados ao aprendizado de Python para estatísticos.
         </p>
     </section>
 
-    <section id="trajetoria" class="panel paper">
-        <p class="section-label">02 / Trajetória</p>
-        <h2 class="titulo">Formação e experiência</h2>
+    <section id="trajetoria" class="panel paper" aria-labelledby="titulo-trajetoria">
+        <p class="section-label">03 / Formação e experiência</p>
+        <h2 id="titulo-trajetoria" class="titulo">Formação e experiência</h2>
         <ul class="timeline">
             <li>
-                <strong>Iniciação científica</strong>
-                <span class="tl-meta">UFJF · Aprendizado estatístico e Indústria 4.0</span>
-                <span>Autoria de um livro digital de introdução ao Python para estatísticos: manipulação de dados, computação numérica, web scraping e publicação reprodutível.</span>
+                <strong>Graduação em Estatística — UFJF</strong>
+                <span class="tl-meta">Universidade Federal de Juiz de Fora · Em andamento</span>
+                <span class="tl-desc">Formação acadêmica voltada a probabilidade, inferência estatística, modelagem, análise multivariada e computação estatística aplicada em R e Python.</span>
+            </li>
+            <li>
+                <strong>Iniciação científica — UFJF</strong>
+                <span class="tl-meta">Aprendizado Estatístico e Indústria 4.0 · Publicação em setembro de 2026</span>
+                <span class="tl-desc">Produção de material técnico e didático sobre Python aplicado à Estatística, com publicação em formato de livro digital utilizando Quarto. O trabalho foi desenvolvido no âmbito do projeto de pesquisa orientado na universidade, abordando manipulação de dados com pandas, computação numérica e simulação com NumPy, coleta de dados via web scraping e relatórios reprodutíveis.</span>
                 <div class="tl-links">
-                    <a href="https://gabrielmazzetti.github.io/python_book/" target="_blank" rel="noopener">Ler o livro</a>
-                    <a href="https://github.com/GabrielMazzetti/python_book" target="_blank" rel="noopener">Repositório</a>
+                    <a href="projetos/computacional/livro_python.html?v=5">Conhecer projeto</a>
+                    <a href="https://gabrielmazzetti.github.io/python_book/" target="_blank" rel="noopener">Ler livro digital ↗</a>
+                    <a href="https://github.com/GabrielMazzetti/python_book" target="_blank" rel="noopener">Repositório ↗</a>
                 </div>
             </li>
             <li>
-                <strong>Iniciação científica</strong>
-                <span class="tl-meta">Embrapa</span>
-                <span>Programação integral de aplicativos interativos para explorar os dados dos sumários de touros Gir e Girolando.</span>
+                <strong>Iniciação científica — Embrapa</strong>
+                <span class="tl-meta">Melhoramento genético de bovinos leiteiros · 2026</span>
+                <span class="tl-desc">Participação em projeto de iniciação científica relacionado ao melhoramento genético de bovinos leiteiros, concebido e orientado pelo pesquisador responsável na Embrapa. Fiquei encarregado do desenvolvimento integral da programação de duas aplicações interativas em R Shiny para exploração dos dados dos Sumários de Touros 2026 do Gir Leiteiro e do Girolando.</span>
                 <div class="tl-links">
-                    <a href="projetos/computacional/app_gir.html?v=4">Case Gir</a>
-                    <a href="projetos/computacional/app_girolando.html?v=4">Case Girolando</a>
+                    <a href="projetos/computacional/sumarios_embrapa.html?v=5">Ver case completo</a>
+                    <a href="https://auax2h-gabriel-affonso.shinyapps.io/app_rigth_sire_b5/" target="_blank" rel="noopener">App Gir Leiteiro ↗</a>
+                    <a href="https://auax2h-gabriel-affonso.shinyapps.io/app_girolando/" target="_blank" rel="noopener">App Girolando ↗</a>
                 </div>
-            </li>
-            <li>
-                <strong>Graduação em Estatística</strong>
-                <span class="tl-meta">UFJF</span>
-                <span>Em andamento.</span>
             </li>
         </ul>
     </section>
 
-    <section id="habilidades" class="panel paper">
-        <p class="section-label">03 / Habilidades</p>
-        <h2 class="titulo">Ferramentas e áreas</h2>
+    <section id="competencias" class="panel paper" aria-labelledby="titulo-competencias">
+        <p class="section-label">04 / Competências</p>
+        <h2 id="titulo-competencias" class="titulo">Métodos e tecnologias</h2>
         <div class="skills">
-            <div>
+            <div class="skill-group">
+                <h3>Métodos estatísticos</h3>
+                <div class="tags">
+                    <span>Inferência estatística</span>
+                    <span>Análise multivariada</span>
+                    <span>Classificação</span>
+                    <span>Simulação</span>
+                    <span>Estatística descritiva</span>
+                </div>
+            </div>
+            <div class="skill-group">
                 <h3>Linguagens</h3>
-                <div class="tags"><span>R</span><span>Python</span><span>SQL</span></div>
+                <div class="tags">
+                    <span>R</span>
+                    <span>Python</span>
+                    <span>SQL</span>
+                </div>
             </div>
-            <div>
-                <h3>Ferramentas</h3>
-                <div class="tags"><span>Shiny</span><span>Quarto</span><span>pandas</span><span>NumPy</span><span>Git &amp; GitHub</span></div>
+            <div class="skill-group">
+                <h3>Computação científica</h3>
+                <div class="tags">
+                    <span>pandas</span>
+                    <span>NumPy</span>
+                    <span>Programação em R</span>
+                    <span>Web scraping</span>
+                </div>
             </div>
-            <div>
-                <h3>Áreas</h3>
-                <div class="tags"><span>Estatística descritiva</span><span>Inferência</span><span>Modelagem</span><span>Simulação</span><span>Aprendizado estatístico</span><span>Web scraping</span></div>
+            <div class="skill-group">
+                <h3>Desenvolvimento</h3>
+                <div class="tags">
+                    <span>Shiny</span>
+                    <span>Quarto</span>
+                    <span>Plotly</span>
+                    <span>Git</span>
+                    <span>GitHub</span>
+                </div>
             </div>
         </div>
+    </section>
+
+    <section id="contato" class="panel blue" aria-labelledby="titulo-contato">
+        <p class="section-label">05 / Contato</p>
+        <h2 id="titulo-contato" class="titulo">Vamos conversar sobre Estatística, pesquisa ou projetos?</h2>
+        <p class="contato-lead">
+            Estou disponível para conversas sobre iniciação científica, projetos aplicados, colaborações acadêmicas e oportunidades na área de Estatística e análise de dados.
+        </p>
+        <div class="botoes">
+            <a href="mailto:gabrielaffonso84@gmail.com?subject=Contato%20via%20Portf%C3%B3lio" class="btn-claro">
+                Enviar e-mail
+            </a>
+            <a href="https://github.com/GabrielMazzetti" target="_blank" rel="noopener" class="btn-contorno">
+                GitHub ↗
+            </a>
+            <a href="https://linkedin.com/in/gabriel-mazzetti-066a4125b" target="_blank" rel="noopener" class="btn-contorno">
+                LinkedIn ↗
+            </a>
+        </div>
+        <p class="contato-email-texto">E-mail direto: gabrielaffonso84@gmail.com</p>
     </section>
 
 </main>
 
 <footer>
-    © 2026 — Gabriel Sanábio Mazzetti Affonso
+    <span>© 2026 — Gabriel Sanábio Mazzetti Affonso</span>
+    <span>Estatística · UFJF</span>
 </footer>
 
-<script src="script.js"></script>
+<script src="script.js?v=5"></script>
 </body>
 </html>

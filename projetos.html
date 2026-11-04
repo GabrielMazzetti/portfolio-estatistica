@@ -1,162 +1,208 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Projetos - Gabriel Mazzetti</title>
-    <meta name="description" content="Projetos de estatística e análise de dados de Gabriel Mazzetti: aplicativos interativos, relatórios e materiais didáticos.">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="style.css?v=3">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projetos — Gabriel Mazzetti</title>
+    <meta name="description" content="Projetos acadêmicos e técnicos de Gabriel Mazzetti em Estatística: aplicações interativas em R Shiny na Embrapa, análise multivariada, livro digital de Python e estudos exploratórios." />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="style.css?v=5" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
 
-    <nav>
-        <ul>
-            <li><a href="index.html?v=4">Home</a></li>
-            <li><a href="projetos.html?v=4" class="ativo">Meus Projetos</a></li>
-            <li><a href="sites.html?v=4">Sites Paralelos</a></li>
+<nav aria-label="Navegação principal">
+    <ul>
+        <li><a href="index.html?v=5">Início</a></li>
+        <li><a href="projetos.html?v=5" class="ativo">Projetos</a></li>
+        <li><a href="projetos-pessoais.html?v=5">Projetos pessoais</a></li>
+        <li><a href="index.html?v=5#sobre">Sobre</a></li>
+        <li><a href="index.html?v=5#contato">Contato</a></li>
 
-            <li class="divisor">|</li>
+        <li class="divisor" aria-hidden="true">|</li>
 
-            <li>
-                <a href="https://github.com/GabrielMazzetti" target="_blank" rel="noopener" title="GitHub">
-                    <i class="fa-brands fa-github"></i>
+        <li>
+            <a href="https://github.com/GabrielMazzetti" target="_blank" rel="noopener">
+                <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
+            </a>
+        </li>
+        <li>
+            <a href="https://linkedin.com/in/gabriel-mazzetti-066a4125b" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+                <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li>
+            <a href="mailto:gabrielmazzetti84@gmail.com?subject=Contato%20via%20Portf%C3%B3lio" aria-label="Enviar e-mail" title="Enviar e-mail">
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<main class="page">
+    <header class="page-title">
+        <p class="eyebrow">Portfólio</p>
+        <h1>Projetos</h1>
+        <p class="intro">Aplicações interativas, estudos aplicados e materiais técnicos que desenvolvi ao longo da graduação e das iniciações científicas.</p>
+    </header>
+
+    <section class="categoria-box" aria-label="Lista de projetos">
+        <div class="lista-itens">
+
+            <article id="sumarios-embrapa" class="projeto-item com-imagem">
+                <a class="projeto-thumb" href="projetos/computacional/sumarios_embrapa.html?v=5">
+                    <img src="assets/projetos/embrapa_gir_ranking.png" alt="Interface do aplicativo Right Sire Gir Leiteiro com filtros genéticos, ranking de reprodutores e seleção em carrinho" width="1400" height="755" />
                 </a>
-            </li>
-            <li>
-                <a href="https://linkedin.com/in/gabriel-mazzetti-066a4125b" target="_blank" rel="noopener" title="LinkedIn">
-                    <i class="fa-brands fa-linkedin"></i>
+                <div>
+                    <p class="projeto-meta">Iniciação científica · Embrapa · 2026</p>
+                    <h2>Exploração interativa dos Sumários de Touros — Embrapa</h2>
+                    <p>
+                        Desenvolvimento integral da programação de duas aplicações interativas em R Shiny (<em>Right Sire</em>) para consulta dinâmica dos Sumários de Touros 2026. O projeto substitui a leitura estática em PDF por filtros multivariados, rankings dinâmicos, matrizes estratégicas e carrinho de seleção.
+                    </p>
+                    <div class="sub-apps">
+                        <div class="sub-app-box">
+                            <strong>Aplicativo Gir Leiteiro</strong>
+                            <span>679 touros avaliados (PNMGL 2026), filtro por Selo MAPA (IPGL), construtor de índice personalizado e Matriz de Sustentabilidade Genética (potencial vs. parentesco).</span>
+                            <a href="https://auax2h-gabriel-affonso.shinyapps.io/app_rigth_sire_b5/" target="_blank" rel="noopener">Abrir aplicativo ↗</a>
+                        </div>
+                        <div class="sub-app-box">
+                            <strong>Aplicativo Girolando</strong>
+                            <span>527 touros avaliados (PMGG 2026), filtro por composição racial (3/4, 5/8 e PS), gráfico de radar para até 4 touros e Matriz de Adaptação Tropical (IETG).</span>
+                            <a href="https://auax2h-gabriel-affonso.shinyapps.io/app_girolando/" target="_blank" rel="noopener">Abrir aplicativo ↗</a>
+                        </div>
+                    </div>
+                    <div class="projeto-tags">
+                        <span>R</span>
+                        <span>Shiny</span>
+                        <span>bslib</span>
+                        <span>Bootstrap 5</span>
+                        <span>Plotly</span>
+                    </div>
+                    <div class="botoes">
+                        <a href="projetos/computacional/sumarios_embrapa.html?v=5" class="btn-projeto">Ver Case Unificado</a>
+                        <a href="projetos/computacional/sumarios_embrapa.html?v=5#gir" class="link-github">Detalhes Gir</a>
+                        <a href="projetos/computacional/sumarios_embrapa.html?v=5#girolando" class="link-github">Detalhes Girolando</a>
+                    </div>
+                </div>
+            </article>
+
+            <article id="projeto-wine" class="projeto-item com-imagem">
+                <a class="projeto-thumb" href="projetos/multivariada/projeto_wine/case_wine.html?v=5">
+                    <img src="assets/projetos/wine_biplot.png" alt="Biplot de Componentes Principais (CP1 x CP2) com 178 amostras de vinhos e vetores das 13 variáveis físico-químicas" width="1400" height="1145" loading="lazy" />
                 </a>
-            </li>
-            <li>
-                <a href="mailto:gabrielmazzetti84@gmail.com?subject=Contato via Portfólio&body=Olá, Gabriel! Vi seu portfólio e gostaria de conversar." title="Enviar Email">
-                    <i class="fa-solid fa-envelope"></i>
+                <div>
+                    <p class="projeto-meta">Estudo aplicado · UFJF · 2026</p>
+                    <h2>Análise multivariada: classificação de vinhos (Wine UCI)</h2>
+                    <p>
+                        Investigação de 178 amostras de vinhos italianos a partir de 13 características físico-químicas para certificar lotes segundo sua cultivar de procedência. Combina PCA implementada manualmente via decomposição espectral, Análise Fatorial por máxima verossimilhança e classificação supervisionada (LDA e QDA) validada por Leave-One-Out (LOOCV).
+                    </p>
+                    <div class="projeto-tags">
+                        <span>R</span>
+                        <span>Análise multivariada</span>
+                        <span>PCA</span>
+                        <span>Análise Fatorial</span>
+                        <span>LDA e QDA</span>
+                        <span>Quarto</span>
+                        <span>Plotly</span>
+                    </div>
+                    <div class="botoes">
+                        <a href="projetos/multivariada/projeto_wine/case_wine.html?v=5" class="btn-projeto">Ver Case</a>
+                        <a href="projetos/multivariada/projeto_wine/wine.html" class="link-github">Ver Relatório</a>
+                        <a href="https://github.com/GabrielMazzetti/portfolio-estatistica/tree/main/projetos/multivariada/projeto_wine" target="_blank" rel="noopener" class="link-github">GitHub ↗</a>
+                    </div>
+                </div>
+            </article>
+
+            <article id="livro-python" class="projeto-item com-imagem">
+                <a class="projeto-thumb" href="projetos/computacional/livro_python.html?v=5">
+                    <img src="assets/projetos/python_book_codigo.png" alt="Livro digital Python, Web Scraping e Livros Digitais em Quarto exibindo código de simulação estatística com NumPy e gráfico do Teorema Central do Limite" width="1400" height="755" loading="lazy" />
                 </a>
-            </li>
-        </ul>
-    </nav>
-
-    <main class="page">
-        <header class="page-title">
-            <p class="eyebrow">Portfólio</p>
-            <h1>Projetos</h1>
-            <p class="intro">Aplicativos, relatórios e materiais que desenvolvi, cada um com a pergunta que buscou responder.</p>
-        </header>
-
-        <section class="categoria-box">
-            <div class="lista-itens">
-
-                <article class="projeto-item">
-                    <h3>App Gir — Exploração de dados de touros</h3>
-                    <p>Aplicativo interativo para explorar os dados do sumário anual de touros Gir, desenvolvido durante a iniciação científica na Embrapa.</p>
-                    <div class="projeto-tags"><span>R</span> <span>Shiny</span></div>
-                    <div class="botoes">
-                        <a href="https://auax2h-gabriel-affonso.shinyapps.io/app_rigth_sire_b5/" target="_blank" rel="noopener" class="btn-projeto">Abrir Aplicativo</a>
-                        <a href="projetos/computacional/app_gir.html?v=4" class="link-github">Ver Case</a>
+                <div>
+                    <p class="projeto-meta">Iniciação científica · UFJF · Setembro de 2026</p>
+                    <h2>Python para estatísticos: livro digital</h2>
+                    <p>
+                        Material técnico e didático escrito em Quarto como resultado de iniciação científica na UFJF. Apresenta fundamentos da linguagem Python, análise exploratória e manipulação de dados com pandas, álgebra vetorial e simulações de Monte Carlo com NumPy, coleta de dados via web scraping e estruturação de livros digitais reprodutíveis.
+                    </p>
+                    <div class="projeto-tags">
+                        <span>Python</span>
+                        <span>pandas</span>
+                        <span>NumPy</span>
+                        <span>Web scraping</span>
+                        <span>Quarto</span>
                     </div>
-                </article>
-
-                <article class="projeto-item">
-                    <h3>App Girolando — Exploração de dados de touros</h3>
-                    <p>Aplicativo interativo para explorar os dados do sumário anual de touros Girolando, com a mesma proposta do App Gir, desenvolvido durante a iniciação científica na Embrapa.</p>
-                    <div class="projeto-tags"><span>R</span> <span>Shiny</span></div>
                     <div class="botoes">
-                        <a href="https://auax2h-gabriel-affonso.shinyapps.io/app_girolando/" target="_blank" rel="noopener" class="btn-projeto">Abrir Aplicativo</a>
-                        <a href="projetos/computacional/app_girolando.html?v=4" class="link-github">Ver Case</a>
+                        <a href="projetos/computacional/livro_python.html?v=5" class="btn-projeto">Ver Case</a>
+                        <a href="https://gabrielmazzetti.github.io/python_book/" target="_blank" rel="noopener" class="link-github">Ler Livro Digital ↗</a>
+                        <a href="https://github.com/GabrielMazzetti/python_book" target="_blank" rel="noopener" class="link-github">GitHub ↗</a>
                     </div>
-                </article>
+                </div>
+            </article>
 
-                <article class="projeto-item">
-                    <h3>Certificação de Vinhos por Composição Química (Wine UCI)</h3>
-                    <p>Estudo de controle de qualidade sobre 178 amostras de vinhos italianos a partir de 13 variáveis químicas, combinando PCA manual, Análise Fatorial e Análise Discriminante (LDA e QDA) para classificar e auditar lotes desconhecidos.</p>
-                    <div class="projeto-tags"><span>R</span> <span>Quarto</span> <span>Plotly</span></div>
-                    <div class="botoes">
-                        <a href="projetos/multivariada/projeto_wine/wine.html" class="btn-projeto">Ver Relatório</a>
-                        <a href="projetos/multivariada/projeto_wine/case_wine.html?v=4" class="link-github">Ver Case</a>
-                        <a href="https://github.com/GabrielMazzetti/portfolio-estatistica/tree/main/projetos/multivariada/projeto_wine" target="_blank" rel="noopener" class="link-github">GitHub</a>
-                    </div>
-                </article>
+            <article id="employee-attrition" class="projeto-item">
+                <p class="projeto-meta">Análise exploratória · R e Quarto</p>
+                <h2>Análise de Employee Attrition</h2>
+                <p id="desc-projeto1" class="descricao-projeto">
+                    Esse projeto utiliza uma base de dados de uma empresa que busca entender por que seus funcionários pedem demissão. Há algum padrão entre esses funcionários? É essencial ter esse entendimento para reduzir os custos contratuais da empresa. O diagnóstico exploratório em R examina registros de 1.470 colaboradores (base IBM HR, taxa global de rotatividade de 16,12%).
+                </p>
+                <div class="projeto-tags">
+                    <span>R</span>
+                    <span>Estatística descritiva</span>
+                    <span>Quarto</span>
+                </div>
+                <div class="botoes">
+                    <a href="projetos/estatistica-descritiva/projeto_employee_attrition/employee_attrition_code.html" class="btn-projeto">Ver Relatório</a>
+                    <a href="https://github.com/GabrielMazzetti/portfolio-estatistica/tree/main/projetos/estatistica-descritiva/projeto_employee_attrition" target="_blank" rel="noopener" class="link-github">GitHub ↗</a>
+                </div>
+            </article>
 
-                <article class="projeto-item">
-                    <h3>Python, Web Scraping e Livros Digitais</h3>
-                    <p>Livro digital de introdução ao Python para estatísticos, escrito em Quarto: manipulação de dados com pandas, simulações com NumPy e coleta de dados na web.</p>
-                    <div class="projeto-tags"><span>Python</span> <span>Quarto</span> <span>Web scraping</span></div>
-                    <div class="botoes">
-                        <a href="https://gabrielmazzetti.github.io/python_book/" target="_blank" rel="noopener" class="btn-projeto">Ler o Livro</a>
-                        <a href="https://github.com/GabrielMazzetti/python_book" target="_blank" rel="noopener" class="link-github">GitHub</a>
-                    </div>
-                </article>
+        </div>
+    </section>
 
-                <article class="projeto-item">
-                    <h3>Análise de Employee Attrition</h3>
-                    <p id="desc-projeto1" class="descricao-projeto">Carregando descrição do README...</p>
-                    <div class="projeto-tags"><span>R</span> <span>Quarto</span></div>
-                    <div class="botoes">
-                        <a href="projetos/estatistica-descritiva/projeto_employee_attrition/employee_attrition_code.html" class="btn-projeto">Ver Relatório</a>
-                        <a href="https://github.com/GabrielMazzetti/portfolio-estatistica/tree/main/projetos/estatistica-descritiva/projeto_employee_attrition" target="_blank" rel="noopener" class="link-github">GitHub</a>
-                    </div>
-                </article>
+</main>
 
-            </div>
-        </section>
+<footer>
+    <span>© 2026 — Gabriel Sanábio Mazzetti Affonso</span>
+    <span>Projetos acadêmicos e técnicos</span>
+</footer>
 
-    </main>
+<script>
+async function carregarReadme(caminhoReadme, idElemento) {
+    const elemento = document.getElementById(idElemento);
+    if (!elemento) return;
 
-    <footer>
-        <p>© 2026 — Gabriel Sanábio Mazzetti Affonso</p>
-    </footer>
-    <script>
-    // Função que busca o README e processa o texto
-    async function carregarReadme(caminhoReadme, idElemento) {
-        try {
-            const resposta = await fetch(caminhoReadme);
-            
-            if (!resposta.ok) {
-                throw new Error("Não achei o arquivo");
-            }
+    try {
+        const resposta = await fetch(caminhoReadme);
+        if (!resposta.ok) return;
 
-            const textoMarkdown = await resposta.text();
-            let resumo = "";
+        const textoMarkdown = await resposta.text();
+        let resumo = "";
 
-            // TENTATIVA 1: Procura pelas tags específicas // A expressão regular pega tudo ([\s\S]*?) que estiver entre as tags
-            const match = textoMarkdown.match(/([\s\S]*?)/);
-
-            if (match && match[1]) {
-                // Se achou as tags, usa o conteúdo de dentro delas
-                resumo = match[1].trim();
-            } else {
-                // TENTATIVA 2 (Fallback): Se não tiver tags, pega as 3 primeiras linhas de texto
-                resumo = textoMarkdown.split('\n') // Quebra linha por linha
-                    .filter(linha => linha.trim() !== '' && !linha.startsWith('#')) // Ignora vazios e títulos
-                    .slice(0, 3) // Pega as primeiras 3 linhas
-                    .join(' '); // Junta tudo
-            }
-
-            // SEGURANÇA: Se o texto for maior que 300 caracteres, corta e põe "..."
-            if (resumo.length > 300) {
-                resumo = resumo.substring(0, 300) + "...";
-            }
-
-            // Coloca o texto limpo no HTML
-            document.getElementById(idElemento).innerText = resumo;
-
-        } catch (erro) {
-            console.error("Erro ao ler README:", erro);
-            // Mensagem amigável caso dê erro
-            document.getElementById(idElemento).innerText = "Verifique o link do GitHub para detalhes.";
+        const match = textoMarkdown.match(/<!--\s*RESUMO\s*-->([\s\S]*?)<!--\s*\/RESUMO\s*-->/i);
+        if (match && match[1] && match[1].trim() !== "") {
+            resumo = match[1].trim();
+        } else {
+            resumo = textoMarkdown
+                .split("\n")
+                .map(linha => linha.trim())
+                .filter(linha => linha !== "" && !linha.startsWith("#") && !linha.startsWith("<!--"))
+                .slice(0, 3)
+                .join(" ");
         }
+
+        if (!resumo) return;
+
+        if (resumo.length > 340) {
+            resumo = resumo.substring(0, 337).trimEnd() + "...";
+        }
+
+        elemento.innerText = resumo;
+    } catch (erro) {
+        // Mantém a descrição estática já renderizada no HTML caso o carregamento externo falhe
+        console.warn("Mantendo descrição local do projeto:", erro);
     }
+}
 
-    // --- CHAMADA DOS PROJETOS ---
-    
-    // Projeto 1:
-    // Lembre-se de usar "Copy Relative Path" no VS Code se o caminho der erro
-        carregarReadme('projetos/estatistica-descritiva/projeto_employee_attrition/README.md', 'desc-projeto1');
-
-    // Quando adicionar o próximo, é só copiar a linha de cima e mudar o ID:
-    // carregarReadme('inferencia/outro_projeto/README.md', 'desc-projeto2');
-
-    </script>
+carregarReadme("projetos/estatistica-descritiva/projeto_employee_attrition/README.md", "desc-projeto1");
+</script>
 </body>
 </html>
